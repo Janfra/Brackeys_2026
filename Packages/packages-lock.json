@@ -1,5 +1,21 @@
 {
   "dependencies": {
+    "com.janito.animationpackage": {
+      "version": "https://github.com/Janfra/Janito-Unity-Packages.git?path=/JanitoAnimationPackage",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.janito.editorextras": "1.0.5"
+      },
+      "hash": "512ee63225af654e16a0eb45006f69c0a6aaf0f9"
+    },
+    "com.janito.editorextras": {
+      "version": "https://github.com/Janfra/Janito-Unity-Packages.git?path=/JanitoEditorExtrasPackage",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "512ee63225af654e16a0eb45006f69c0a6aaf0f9"
+    },
     "com.unity.ai.navigation": {
       "version": "2.0.14",
       "depth": 0,
