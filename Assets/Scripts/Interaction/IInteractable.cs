@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public interface IInteractable
@@ -6,6 +7,7 @@ public interface IInteractable
     public void Interact(InteractPayload payload);
 }
 
+[Serializable]
 public class InteractPayload
 {
     public GameObject Source;
