@@ -25,8 +25,48 @@ public class Package : MonoBehaviour, IInteractable
     {
         if (payload == null || payload.Source == null || !IsInteractable) return;
 
-        MoveOnTopOfInteractor(payload);
+        DisablePhysics();
+        MoveOnTopOfObject(payload.Source.transform);
         TrySetInteractorPackageOverride(payload);
+    }
+
+    public void Collect()
+    {
+        if (interactor != null)
+        {
+            interactor.OnShouldInteract = null;
+            interactor = null;            
+        }
+        transform.SetParent(null);
+    }
+
+    public void MoveOnTopOfObject(Transform target)
+    {
+        var position = target.position;
+        position.y += heightOffset;
+
+        if (TryGetHeightFromCollider(target.gameObject, out float yOffset))
+        {
+            position.y += yOffset;
+        }
+        else
+        {
+            this.LogWarningInDevelopment($"Unable to determine size of source from collider on {target.gameObject.name}. Using arbitrary offset instead.");
+            position.y += heightOffset; // Do height offset again as a fallback for now to try to put it on top
+        }
+
+        transform.position = position;
+        transform.SetParent(target.transform);
+    }
+
+    public void DisablePhysics()
+    {
+        rigidbody.isKinematic = true;
+    }
+    
+    public void EnablePhysics()
+    {
+        rigidbody.isKinematic = false;
     }
 
     private void TrySetInteractorPackageOverride(InteractPayload payload)
@@ -73,29 +113,9 @@ public class Package : MonoBehaviour, IInteractable
 
     private void ThrowPackage()
     {
-
+        EnablePhysics();
         transform.SetParent(null);
         rigidbody.AddForce(interactor.transform.forward * throwForce, ForceMode.Impulse);
-        interactor = null;
-    }
-
-    private void MoveOnTopOfInteractor(InteractPayload payload)
-    {
-        var position = payload.Source.transform.position;
-        position.y += heightOffset;
-        
-        if (TryGetHeightFromCollider(payload.Source, out float yOffset))
-        {
-            position.y += yOffset;
-        }
-        else
-        {
-            this.LogWarningInDevelopment($"Unable to determine size of source from collider on {payload.Source.name}. Using arbitrary offset instead.");
-            position.y += heightOffset; // Do height offset again as a fallback for now to try to put it on top
-        }
-
-        transform.position = position;
-        transform.SetParent(payload.Source.transform, true);
     }
 
     private bool TryGetHeightFromCollider(GameObject go, out float height)
