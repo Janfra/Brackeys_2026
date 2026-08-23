@@ -1,6 +1,7 @@
 using Janito.EditorExtras;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -43,7 +44,8 @@ public class Interactor : MonoBehaviour
 
         interactSweep.Clear();
         var nearbyItems = Physics.OverlapSphere(transform.position, interactRadius, interactLayerMask.value);
-        foreach (var item in nearbyItems)
+        var orderedByDistance = nearbyItems.OrderBy(x => (transform.position - x.transform.position).sqrMagnitude);
+        foreach (var item in orderedByDistance)
         {
             if (item.TryGetComponent(out IInteractable interactable) && interactable.IsInteractable)
             {
