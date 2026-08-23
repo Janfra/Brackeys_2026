@@ -40,13 +40,9 @@ public class Package : MonoBehaviour, IInteractable
     private bool HandleInteraction(List<IInteractable> interactablesInRange)
     {
         interactor.OnShouldInteract = null;
-        bool hasValidInteractable = HasPackageCompatibleInteractable(interactablesInRange);
+        bool hasValidInteractable = HasPackageCompatibleInteractable(interactablesInRange); // Assigns it to be interacted with if found
 
-        if (hasValidInteractable)
-        {
-            // Set them to be the selected interactable
-        }
-        else
+        if (!hasValidInteractable)
         {
             ThrowPackage();
         }
@@ -57,7 +53,21 @@ public class Package : MonoBehaviour, IInteractable
 
     private bool HasPackageCompatibleInteractable(List<IInteractable> interactablesInRange)
     {
-        // Find interface in list or similar here
+        for (int i = 0; i < interactablesInRange.Count; i++)
+        {
+            var interactable = interactablesInRange[i];
+            if (interactable is IPackageInteractable)
+            {
+                if (i == 0) return true;
+
+                // Swap it to first position and let it be interacted with
+                var temp = interactablesInRange[0];
+                interactablesInRange[i] = temp;
+                interactablesInRange[0] = interactable;
+                return true;
+            }
+        } 
+
         return false;
     }
 
