@@ -1,11 +1,12 @@
 using Janito.EditorExtras;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Interactor : MonoBehaviour
 {
     public event UnityAction<IInteractable> OnInteracted;
-    public event UnityAction OnTryInteract;
 
     [SerializeField]
     private float interactRadius;
@@ -20,6 +21,13 @@ public class Interactor : MonoBehaviour
     [ReadOnly]
     public bool CanInteract;
 
+    /// <summary>
+    /// To be able to assign custom logic before on interact default logic. Returned boolean determines if we should continue logic.
+    /// </summary>
+    public Func<List<IInteractable>, bool> OnShouldInteract;
+
+    private List<IInteractable> interactSweep = new();
+
     private void Awake()
     {
         interactPayload.Source = gameObject;
@@ -28,27 +36,39 @@ public class Interactor : MonoBehaviour
     [Button(ButtonExecutionModes.PlayMode)]
     public void TryInteract()
     {
-        OnTryInteract.Invoke();
         if (!CanInteract)
         {
             return;
         }
 
+        interactSweep.Clear();
         var nearbyItems = Physics.OverlapSphere(transform.position, interactRadius, interactLayerMask.value);
         foreach (var item in nearbyItems)
         {
             if (item.TryGetComponent(out IInteractable interactable) && interactable.IsInteractable)
             {
-                InteractWith(interactable);
-                break;
+                interactSweep.Add(interactable);
             }
+        }
+
+        if (OnShouldInteract != null)
+        {
+            if (!OnShouldInteract.Invoke(interactSweep))
+            {
+                return;
+            }
+        }
+
+        if (interactSweep.Count > 0)
+        {
+            InteractWith(interactSweep[0]);
         }
     }
 
     private void InteractWith(IInteractable interactable)
     {
         interactable.Interact(interactPayload);
-        OnInteracted.Invoke(interactable);
+        OnInteracted?.Invoke(interactable);
     }
 
     private void OnDrawGizmosSelected()
