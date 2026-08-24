@@ -21,21 +21,21 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    void OnThrottle(InputValue value)
-{
-        throttle = value.Get<float>();
-    print("throttle: " + throttle);
-}
+    public void OnThrottle(InputAction.CallbackContext context)
+    {
+        throttle = context.ReadValue<float>();
+        print("throttle: " + throttle);
+    }
 
 
-    void OnSteer(InputValue value)
-{
-        steer = value.Get<float>();
+    public void OnSteer(InputAction.CallbackContext context)
+    {
+        steer = context.ReadValue<float>();
         print("steer: " + steer);
-}
+    }
 
-private void MovePlayer()
+    private void MovePlayer()
     {
         rb.linearVelocity = transform.forward * throttle * speed + transform.right * steer * speed;
-}
+    }
 } 
