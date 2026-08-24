@@ -56,6 +56,7 @@ public class Package : MonoBehaviour, IInteractable
         }
 
         transform.position = position;
+        transform.rotation = target.rotation;
         transform.SetParent(target.transform);
     }
 
