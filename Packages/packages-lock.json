@@ -14,7 +14,16 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "512ee63225af654e16a0eb45006f69c0a6aaf0f9"
+      "hash": "0341b0f7eb384143838253dab181df3d053af812"
+    },
+    "com.janito.prototypingpackage": {
+      "version": "https://github.com/Janfra/Janito-Unity-Packages.git?path=/JanitoPrototypingPackage",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.janito.editorextras": "1.0.4"
+      },
+      "hash": "0341b0f7eb384143838253dab181df3d053af812"
     },
     "com.unity.ai.navigation": {
       "version": "2.0.14",
