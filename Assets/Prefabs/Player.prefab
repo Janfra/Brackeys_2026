@@ -1,0 +1,667 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &75006269800279548
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3646068809263788637}
+  - component: {fileID: 8672361418483484857}
+  - component: {fileID: 7593272940396912809}
+  - component: {fileID: 997224911633587397}
+  - component: {fileID: 7446447499730491431}
+  - component: {fileID: 8625514282625343629}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3646068809263788637
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75006269800279548}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 9223353730408602979}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8672361418483484857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75006269800279548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6a24e20e5a60c47a68172edd7ccf9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputSystemActionsManager
+  _cursorLockMode: 0
+  _isVisible: 1
+  _canAutomaticallyMatchEnable: 1
+  _assetSource: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  _events:
+  - rid: 941814726249939229
+  - rid: 941814726249939230
+  - rid: 941814726249939231
+  - rid: 941814726249939232
+  - rid: 941814726249939233
+  - rid: 941814726249939234
+  - rid: 941814726249939235
+  - rid: 941814726249939236
+  - rid: 941814726249939237
+  - rid: 941814726249939239
+  - rid: 941814726249939238
+  - rid: 941814726249939240
+  - rid: 941814726249939241
+  - rid: 941814726249939242
+  - rid: 941814726249939243
+  - rid: 941814726249939244
+  - rid: 941814726249939245
+  - rid: 941814726249939246
+  - rid: 941814726249939247
+  - rid: 941814726249939248
+  - rid: 941814726249939249
+  references:
+    version: 2
+    RefIds:
+    - rid: 941814726249939229
+      type: {class: InputBroadcaster, ns: Janito.Prototyping.Input, asm: Janito.PrototypingTools}
+      data:
+        _name: Jump
+        _canDisableInputAction: 0
+        _shouldRespectActiveEnableState: 0
+        OnInputAction:
+          m_PersistentCalls:
+            m_Calls: []
+        InputStarted:
+          m_PersistentCalls:
+            m_Calls: []
+        InputPerformed:
+          m_PersistentCalls:
+            m_Calls: []
+        InputCancelled:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 941814726249939230
+      type: {class: 'InputBroadcaster`1[[UnityEngine.Vector2, UnityEngine.CoreModule]]', ns: Janito.Prototyping.Input, asm: Janito.PrototypingTools}
+      data:
+        _name: Move
+        _canDisableInputAction: 0
+        _shouldRespectActiveEnableState: 0
+        OnInputAction:
+          m_PersistentCalls:
+            m_Calls: []
+        InputStarted:
+          m_PersistentCalls:
+            m_Calls: []
+        InputPerformed:
+          m_PersistentCalls:
+            m_Calls: []
+        InputCancelled:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 941814726249939231
+      type: {class: 'InputBroadcaster`1[[UnityEngine.Vector2, UnityEngine.CoreModule]]', ns: Janito.Prototyping.Input, asm: Janito.PrototypingTools}
+      data:
+        _name: Look
+        _canDisableInputAction: 0
+        _shouldRespectActiveEnableState: 0
+        OnInputAction:
+          m_PersistentCalls:
+            m_Calls: []
+        InputStarted:
+          m_PersistentCalls:
+            m_Calls: []
+        InputPerformed:
+          m_PersistentCalls:
+            m_Calls: []
+        InputCancelled:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 941814726249939232
+      type: {class: InputBroadcaster, ns: Janito.Prototyping.Input, asm: Janito.PrototypingTools}
+      data:
+        _name: Attack
+        _canDisableInputAction: 0
+        _shouldRespectActiveEnableState: 0
+        OnInputAction:
+          m_PersistentCalls:
+            m_Calls: []
+        InputStarted:
+          m_PersistentCalls:
+            m_Calls: []
+        InputPerformed:
+          m_PersistentCalls:
+            m_Calls: []
+        InputCancelled:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 941814726249939233
+      type: {class: InputBroadcaster, ns: Janito.Prototyping.Input, asm: Janito.PrototypingTools}
+      data:
+        _name: Interact
+        _canDisableInputAction: 0
+        _shouldRespectActiveEnableState: 0
+        OnInputAction:
+          m_PersistentCalls:
+            m_Calls: []
+        InputStarted:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 7593272940396912809}
+              m_TargetAssemblyTypeName: Interactor, Assembly-CSharp
+              m_MethodName: TryInteract
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        InputPerformed:
+          m_PersistentCalls:
+            m_Calls: []
+        InputCancelled:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 941814726249939234
+      type: {class: InputBroadcaster, ns: Janito.Prototyping.Input, asm: Janito.PrototypingTools}
+      data:
+        _name: Crouch
+        _canDisableInputAction: 0
+        _shouldRespectActiveEnableState: 0
+        OnInputAction:
+          m_PersistentCalls:
+            m_Calls: []
+        InputStarted:
+          m_PersistentCalls:
+            m_Calls: []
+        InputPerformed:
+          m_PersistentCalls:
+            m_Calls: []
+        InputCancelled:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 941814726249939235
+      type: {class: InputBroadcaster, ns: Janito.Prototyping.Input, asm: Janito.PrototypingTools}
+      data:
+        _name: Previous
+        _canDisableInputAction: 0
+        _shouldRespectActiveEnableState: 0
+        OnInputAction:
+          m_PersistentCalls:
+            m_Calls: []
+        InputStarted:
+          m_PersistentCalls:
+            m_Calls: []
+        InputPerformed:
+          m_PersistentCalls:
+            m_Calls: []
+        InputCancelled:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 941814726249939236
+      type: {class: InputBroadcaster, ns: Janito.Prototyping.Input, asm: Janito.PrototypingTools}
+      data:
+        _name: Next
+        _canDisableInputAction: 0
+        _shouldRespectActiveEnableState: 0
+        OnInputAction:
+          m_PersistentCalls:
+            m_Calls: []
+        InputStarted:
+          m_PersistentCalls:
+            m_Calls: []
+        InputPerformed:
+          m_PersistentCalls:
+            m_Calls: []
+        InputCancelled:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 941814726249939237
+      type: {class: InputBroadcaster, ns: Janito.Prototyping.Input, asm: Janito.PrototypingTools}
+      data:
+        _name: Sprint
+        _canDisableInputAction: 0
+        _shouldRespectActiveEnableState: 0
+        OnInputAction:
+          m_PersistentCalls:
+            m_Calls: []
+        InputStarted:
+          m_PersistentCalls:
+            m_Calls: []
+        InputPerformed:
+          m_PersistentCalls:
+            m_Calls: []
+        InputCancelled:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 941814726249939238
+      type: {class: InputBroadcaster, ns: Janito.Prototyping.Input, asm: Janito.PrototypingTools}
+      data:
+        _name: Throttle
+        _canDisableInputAction: 0
+        _shouldRespectActiveEnableState: 0
+        OnInputAction:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 997224911633587397}
+              m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+              m_MethodName: OnThrottle
+              m_Mode: 0
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        InputStarted:
+          m_PersistentCalls:
+            m_Calls: []
+        InputPerformed:
+          m_PersistentCalls:
+            m_Calls: []
+        InputCancelled:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 941814726249939239
+      type: {class: InputBroadcaster, ns: Janito.Prototyping.Input, asm: Janito.PrototypingTools}
+      data:
+        _name: Steer
+        _canDisableInputAction: 0
+        _shouldRespectActiveEnableState: 0
+        OnInputAction:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 997224911633587397}
+              m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+              m_MethodName: OnSteer
+              m_Mode: 0
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        InputStarted:
+          m_PersistentCalls:
+            m_Calls: []
+        InputPerformed:
+          m_PersistentCalls:
+            m_Calls: []
+        InputCancelled:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 941814726249939240
+      type: {class: 'InputBroadcaster`1[[UnityEngine.Vector2, UnityEngine.CoreModule]]', ns: Janito.Prototyping.Input, asm: Janito.PrototypingTools}
+      data:
+        _name: Navigate
+        _canDisableInputAction: 0
+        _shouldRespectActiveEnableState: 0
+        OnInputAction:
+          m_PersistentCalls:
+            m_Calls: []
+        InputStarted:
+          m_PersistentCalls:
+            m_Calls: []
+        InputPerformed:
+          m_PersistentCalls:
+            m_Calls: []
+        InputCancelled:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 941814726249939241
+      type: {class: InputBroadcaster, ns: Janito.Prototyping.Input, asm: Janito.PrototypingTools}
+      data:
+        _name: Submit
+        _canDisableInputAction: 0
+        _shouldRespectActiveEnableState: 0
+        OnInputAction:
+          m_PersistentCalls:
+            m_Calls: []
+        InputStarted:
+          m_PersistentCalls:
+            m_Calls: []
+        InputPerformed:
+          m_PersistentCalls:
+            m_Calls: []
+        InputCancelled:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 941814726249939242
+      type: {class: InputBroadcaster, ns: Janito.Prototyping.Input, asm: Janito.PrototypingTools}
+      data:
+        _name: Cancel
+        _canDisableInputAction: 0
+        _shouldRespectActiveEnableState: 0
+        OnInputAction:
+          m_PersistentCalls:
+            m_Calls: []
+        InputStarted:
+          m_PersistentCalls:
+            m_Calls: []
+        InputPerformed:
+          m_PersistentCalls:
+            m_Calls: []
+        InputCancelled:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 941814726249939243
+      type: {class: 'InputBroadcaster`1[[UnityEngine.Vector2, UnityEngine.CoreModule]]', ns: Janito.Prototyping.Input, asm: Janito.PrototypingTools}
+      data:
+        _name: Point
+        _canDisableInputAction: 0
+        _shouldRespectActiveEnableState: 0
+        OnInputAction:
+          m_PersistentCalls:
+            m_Calls: []
+        InputStarted:
+          m_PersistentCalls:
+            m_Calls: []
+        InputPerformed:
+          m_PersistentCalls:
+            m_Calls: []
+        InputCancelled:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 941814726249939244
+      type: {class: InputBroadcaster, ns: Janito.Prototyping.Input, asm: Janito.PrototypingTools}
+      data:
+        _name: Click
+        _canDisableInputAction: 0
+        _shouldRespectActiveEnableState: 0
+        OnInputAction:
+          m_PersistentCalls:
+            m_Calls: []
+        InputStarted:
+          m_PersistentCalls:
+            m_Calls: []
+        InputPerformed:
+          m_PersistentCalls:
+            m_Calls: []
+        InputCancelled:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 941814726249939245
+      type: {class: InputBroadcaster, ns: Janito.Prototyping.Input, asm: Janito.PrototypingTools}
+      data:
+        _name: RightClick
+        _canDisableInputAction: 0
+        _shouldRespectActiveEnableState: 0
+        OnInputAction:
+          m_PersistentCalls:
+            m_Calls: []
+        InputStarted:
+          m_PersistentCalls:
+            m_Calls: []
+        InputPerformed:
+          m_PersistentCalls:
+            m_Calls: []
+        InputCancelled:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 941814726249939246
+      type: {class: InputBroadcaster, ns: Janito.Prototyping.Input, asm: Janito.PrototypingTools}
+      data:
+        _name: MiddleClick
+        _canDisableInputAction: 0
+        _shouldRespectActiveEnableState: 0
+        OnInputAction:
+          m_PersistentCalls:
+            m_Calls: []
+        InputStarted:
+          m_PersistentCalls:
+            m_Calls: []
+        InputPerformed:
+          m_PersistentCalls:
+            m_Calls: []
+        InputCancelled:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 941814726249939247
+      type: {class: 'InputBroadcaster`1[[UnityEngine.Vector2, UnityEngine.CoreModule]]', ns: Janito.Prototyping.Input, asm: Janito.PrototypingTools}
+      data:
+        _name: ScrollWheel
+        _canDisableInputAction: 0
+        _shouldRespectActiveEnableState: 0
+        OnInputAction:
+          m_PersistentCalls:
+            m_Calls: []
+        InputStarted:
+          m_PersistentCalls:
+            m_Calls: []
+        InputPerformed:
+          m_PersistentCalls:
+            m_Calls: []
+        InputCancelled:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 941814726249939248
+      type: {class: 'InputBroadcaster`1[[UnityEngine.Vector3, UnityEngine.CoreModule]]', ns: Janito.Prototyping.Input, asm: Janito.PrototypingTools}
+      data:
+        _name: TrackedDevicePosition
+        _canDisableInputAction: 0
+        _shouldRespectActiveEnableState: 0
+        OnInputAction:
+          m_PersistentCalls:
+            m_Calls: []
+        InputStarted:
+          m_PersistentCalls:
+            m_Calls: []
+        InputPerformed:
+          m_PersistentCalls:
+            m_Calls: []
+        InputCancelled:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 941814726249939249
+      type: {class: 'InputBroadcaster`1[[UnityEngine.Quaternion, UnityEngine.CoreModule]]', ns: Janito.Prototyping.Input, asm: Janito.PrototypingTools}
+      data:
+        _name: TrackedDeviceOrientation
+        _canDisableInputAction: 0
+        _shouldRespectActiveEnableState: 0
+        OnInputAction:
+          m_PersistentCalls:
+            m_Calls: []
+        InputStarted:
+          m_PersistentCalls:
+            m_Calls: []
+        InputPerformed:
+          m_PersistentCalls:
+            m_Calls: []
+        InputCancelled:
+          m_PersistentCalls:
+            m_Calls: []
+--- !u!114 &7593272940396912809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75006269800279548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6b0b946dc7bbc4886004e0fc3ba215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactor
+  interactRadius: 1.5
+  interactLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  interactPayload:
+    Source: {fileID: 0}
+  CanInteract: 1
+--- !u!114 &997224911633587397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75006269800279548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e2076333ba43d444971d78f177d2c5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  speed: 12
+  rotationSpeed: 90
+--- !u!54 &7446447499730491431
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75006269800279548}
+  serializedVersion: 5
+  m_Mass: 0.0000001
+  m_LinearDamping: 0
+  m_AngularDamping: 8.95
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 1
+--- !u!136 &8625514282625343629
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75006269800279548}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1962940409910405511
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9223353730408602979}
+  - component: {fileID: 5120753474961817427}
+  - component: {fileID: 1258631866501817355}
+  m_Layer: 0
+  m_Name: Avatar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9223353730408602979
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962940409910405511}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3646068809263788637}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5120753474961817427
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962940409910405511}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1258631866501817355
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962940409910405511}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
