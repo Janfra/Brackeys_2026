@@ -186,4 +186,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Package
   heightOffset: 0.5
-  throwForce: 7.5
+  throwFowardForce: 7.5
+  throwUpwardForce: 2

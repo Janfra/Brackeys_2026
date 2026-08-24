@@ -9,7 +9,9 @@ public class Package : MonoBehaviour, IInteractable
     private float heightOffset = 1.0f;
 
     [SerializeField]
-    private float throwForce = 50.0f; // Temporary throw force
+    private float throwFowardForce = 7.5f; // Temporary throw force
+    [SerializeField]
+    private float throwUpwardForce = 5.0f;
 
     public bool IsInteractable => interactor == null;
 
@@ -116,7 +118,9 @@ public class Package : MonoBehaviour, IInteractable
     {
         EnablePhysics();
         transform.SetParent(null);
-        rigidbody.AddForce(interactor.transform.forward * throwForce, ForceMode.Impulse);
+
+        Vector3 throwDirection = interactor.transform.forward * throwFowardForce + interactor.transform.up * throwUpwardForce;
+        rigidbody.AddForce(throwDirection, ForceMode.Impulse);
     }
 
     private bool TryGetHeightFromCollider(GameObject go, out float height)
