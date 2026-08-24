@@ -1340,7 +1340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7459ee703b7667498c748b928b03d05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spawner
-  prefab: {fileID: 0}
+  prefab: {fileID: 7752233166635095354, guid: d143f3c376e03344fbb072f1ba0a339d, type: 3}
   spawnHeight: 4
 --- !u!1 &1373440313
 GameObject:
