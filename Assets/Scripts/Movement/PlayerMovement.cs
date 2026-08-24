@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
         MovePlayer();
     }
 
-
     public void OnThrottle(InputAction.CallbackContext context)
     {
         throttle = context.ReadValue<float>();
@@ -36,6 +35,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        rb.linearVelocity = transform.forward * throttle * speed + transform.right * steer * speed;
+        Vector2 input = new Vector2(throttle, steer);
+        input.Normalize();
+
+        rb.linearVelocity = transform.forward * input.x * speed + transform.right * input.y * speed;
     }
 } 
