@@ -1,13 +1,21 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
-    [SerializeField] private float rotationSpeed = 90f;
-    float throttle;
-    float steer;
+    [SerializeField] 
+    private float speed = 5f;
+    [SerializeField] 
+    private float rotationSpeed = 90f;
+    [SerializeField, Range(1f, 179f)]
+    private float rotationStep = 170.0f;
 
-    Vector2 movementDirection = Vector2.zero;
+    private float throttle;
+    private float steer;
+
+    private Vector3 velocity = Vector3.zero;
+    private Vector2 inputHorizontalDirection = Vector2.zero;
+
     private Rigidbody rb;
     
     private void Awake()
@@ -17,27 +25,44 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        UpdateInput();
+        SetFacingDirection();
         MovePlayer();
     }
 
     public void OnThrottle(InputAction.CallbackContext context)
     {
         throttle = context.ReadValue<float>();
-        print("throttle: " + throttle);
     }
 
 
     public void OnSteer(InputAction.CallbackContext context)
     {
         steer = context.ReadValue<float>();
-        print("steer: " + steer);
+    }
+
+    private void UpdateInput()
+    {
+        inputHorizontalDirection = new Vector2(throttle, steer);
+        inputHorizontalDirection.Normalize();
     }
 
     private void MovePlayer()
     {
-        Vector2 input = new Vector2(throttle, steer);
-        input.Normalize();
+        velocity = transform.forward * inputHorizontalDirection.x * speed;
+        rb.linearVelocity = velocity;
+    }
 
-        rb.linearVelocity = transform.forward * input.x * speed + transform.right * input.y * speed;
+    private void SetFacingDirection()
+    {
+        if (steer == 0.0f)
+        {
+            return;
+        }
+
+        var rotation = transform.eulerAngles;
+        var newRotation = Mathf.MoveTowardsAngle(rotation.y, rotation.y + (steer * 100), rotationSpeed * Time.deltaTime);
+
+        rb.MoveRotation(Quaternion.Euler(rotation.x, newRotation, rotation.z));
     }
 } 
