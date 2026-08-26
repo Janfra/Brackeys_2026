@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Player Movement Configuration
   m_EditorClassIdentifier: Assembly-CSharp::MovementConfiguration
-  <AccelerationStats>k__BackingField:
+  <SpeedStats>k__BackingField:
     MaxSpeed: 12
-    AccelerationRate: 10
-    DecelerationRate: 11
+    AccelerationRate: 24.8
+    DecelerationRate: 26.2
   <RotationStats>k__BackingField:
     RotationSpeed: 305
     RotationStep: 179
