@@ -67,4 +67,10 @@ public class PlayerMovement : MonoBehaviour
 
         rb.MoveRotation(Quaternion.Euler(rotation.x, newRotation, rotation.z));
     }
+
+    private void OnValidate()
+    {
+        rotationSpeed = Mathf.Max(0, rotationSpeed);
+        speed = Mathf.Max(0, speed);
+    }
 } 
