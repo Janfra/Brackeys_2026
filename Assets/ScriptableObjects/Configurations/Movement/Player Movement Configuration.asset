@@ -15,7 +15,7 @@ MonoBehaviour:
   <SpeedStats>k__BackingField:
     MaxSpeed: 12
     AccelerationRate: 24.8
-    DecelerationRate: 26.2
+    DecelerationRate: 28
   <RotationStats>k__BackingField:
-    RotationSpeed: 305
+    RotationSpeed: 265.7
     RotationStep: 179
