@@ -546,22 +546,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1533727511}
     m_Modifications:
-    - target: {fileID: 1862277515096502043, guid: 62b5989a6c4bfe84eaf1d1337592cbd3, type: 3}
-      propertyPath: TrackerSettings.BindingMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1862277515096502043, guid: 62b5989a6c4bfe84eaf1d1337592cbd3, type: 3}
-      propertyPath: TrackerSettings.RotationDamping.y
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2108030258956524085, guid: 62b5989a6c4bfe84eaf1d1337592cbd3, type: 3}
-      propertyPath: Damping.x
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2108030258956524085, guid: 62b5989a6c4bfe84eaf1d1337592cbd3, type: 3}
-      propertyPath: Damping.y
-      value: 0.45
-      objectReference: {fileID: 0}
     - target: {fileID: 8371113923454584448, guid: 62b5989a6c4bfe84eaf1d1337592cbd3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

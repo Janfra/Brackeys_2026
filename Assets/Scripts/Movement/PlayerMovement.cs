@@ -1,14 +1,13 @@
+using Janito.EditorExtras;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] 
-    private float speed = 5f;
-    [SerializeField] 
-    private float rotationSpeed = 90f;
-    [SerializeField, Range(1f, 179f)]
-    private float rotationStep = 170.0f;
+    [SerializeField]
+    [CreateButton(namingFormat: "{name} Movement Configuration", savePath: "Assets/ScriptableObjects/Configurations/Movement")]
+    [InlineInspector]
+    private MovementConfiguration configuration;
 
     private float throttle;
     private float steer;
@@ -49,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        velocity = transform.forward * inputHorizontalDirection.x * speed;
+        velocity = transform.forward * inputHorizontalDirection.x * configuration.Speed;
         rb.linearVelocity = velocity;
     }
 
@@ -61,16 +60,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         var rotation = transform.eulerAngles;
-        var targetRotation = rotation.y + (steer * rotationStep);
-        var delta = rotationSpeed * Time.deltaTime;
+        var targetRotation = rotation.y + (steer * configuration.RotationStep);
+        var delta = configuration.RotationSpeed * Time.deltaTime;
         var newRotation = Mathf.MoveTowardsAngle(rotation.y, targetRotation, delta);
 
         rb.MoveRotation(Quaternion.Euler(rotation.x, newRotation, rotation.z));
     }
-
-    private void OnValidate()
-    {
-        rotationSpeed = Mathf.Max(0, rotationSpeed);
-        speed = Mathf.Max(0, speed);
-    }
-} 
+}

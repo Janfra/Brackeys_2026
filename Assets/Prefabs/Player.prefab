@@ -523,9 +523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e2076333ba43d444971d78f177d2c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  speed: 12
-  rotationSpeed: 305
-  rotationStep: 179
+  configuration: {fileID: 11400000, guid: 3af9efc70c7d75946a6ef9153170d97a, type: 2}
 --- !u!54 &7446447499730491431
 Rigidbody:
   m_ObjectHideFlags: 0
