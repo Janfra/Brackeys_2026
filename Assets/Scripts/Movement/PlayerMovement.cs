@@ -61,7 +61,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
         var rotation = transform.eulerAngles;
-        var newRotation = Mathf.MoveTowardsAngle(rotation.y, rotation.y + (steer * 100), rotationSpeed * Time.deltaTime);
+        var targetRotation = rotation.y + (steer * rotationStep);
+        var delta = rotationSpeed * Time.deltaTime;
+        var newRotation = Mathf.MoveTowardsAngle(rotation.y, targetRotation, delta);
 
         rb.MoveRotation(Quaternion.Euler(rotation.x, newRotation, rotation.z));
     }
