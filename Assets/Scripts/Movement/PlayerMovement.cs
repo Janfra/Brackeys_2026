@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float throttle;
     private float steer;
+    private float acceleration;
 
     private Vector3 velocity = Vector3.zero;
     private Vector2 inputHorizontalDirection = Vector2.zero;
@@ -48,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        velocity = transform.forward * inputHorizontalDirection.x * configuration.Speed;
+        velocity = transform.forward * inputHorizontalDirection.x * configuration.MaxSpeed;
         rb.linearVelocity = velocity;
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 [Serializable]
 public struct RotationStats
 {
+    [Min(0.0f)]
     public float RotationSpeed;
 
     [Range(1f, 179f)]
