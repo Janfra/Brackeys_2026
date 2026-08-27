@@ -1,9 +1,14 @@
+using Janito.EditorExtras;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Package : MonoBehaviour, IInteractable
 {
+    [SerializeField]
+    [CreateButton(namingFormat: "{name}GrabConfiguration", savePath: PathUtils.ProjectConfigurationPath + "/Grab")]
+    private GrabConfiguration grabConfiguration;
+
     public bool IsInteractable => interactor == null;
 
     private Grabbable grabbable = new();
@@ -13,6 +18,7 @@ public class Package : MonoBehaviour, IInteractable
     {
         grabbable.Rigidbody = GetComponent<Rigidbody>();
         grabbable.Transform = transform;
+        grabbable.GrabConfiguration = grabConfiguration;
     }
 
     public void Interact(InteractPayload payload)
