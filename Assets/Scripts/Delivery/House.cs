@@ -7,6 +7,9 @@ public class House : MonoBehaviour
     [SerializeField]
     private RegisteredHousesSO houseRegistry;
 
+    [SerializeField]
+    private Transform deliveryPoint;
+
     [Header("Debug")]
     [ReadOnly]
     [SerializeField]
@@ -14,7 +17,19 @@ public class House : MonoBehaviour
 
     private void Awake()
     {
-        houseIdentifier = houseRegistry.CreateAndRegisterHouse();
+        if (houseRegistry == null)
+        {
+            this.LogErrorInDevelopment($"House house registry reference is null. Provide house registry reference to be able to register and find house information.");
+            return;
+        }
+
+        if (deliveryPoint == null)
+        {
+            this.LogErrorInDevelopment($"House delivery point reference is null. Provide transform reference to be able to determine delivery location.");
+            return;
+        }
+
+        houseIdentifier = houseRegistry.CreateAndRegisterHouse(new(deliveryPoint.position));
 
         // Make the house static just in case
         var rb = GetComponent<Rigidbody>();

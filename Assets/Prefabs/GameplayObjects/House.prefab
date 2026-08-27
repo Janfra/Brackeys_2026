@@ -294,6 +294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::House
   houseRegistry: {fileID: 11400000, guid: 90f96f156d2baa846aa3d348666e0212, type: 2}
+  deliveryPoint: {fileID: 1106132063385161268}
   houseIdentifier: {fileID: 0}
 --- !u!54 &8523342492860676946
 Rigidbody:

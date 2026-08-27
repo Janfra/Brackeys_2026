@@ -1,5 +1,4 @@
 using Janito.EditorExtras;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,10 +6,22 @@ using UnityEngine;
 public class RegisteredHousesSO : ScriptableObject
 {
     private List<HouseSO> registeredHouses;
+    private Dictionary<HouseSO, HouseDetails> houseDetailsMap;
 
     public IReadOnlyList<HouseSO> RegisteredHouses => registeredHouses;
 
-    public void RegisterHouse(HouseSO house)
+    private void OnEnable()
+    {
+        registeredHouses = new();
+        houseDetailsMap = new();
+    }
+
+    public bool TryGetHouseDetails(HouseSO house, out HouseDetails details)
+    {
+        return houseDetailsMap.TryGetValue(house, out details);
+    }
+
+    public void RegisterHouse(HouseSO house, HouseDetails details)
     {
         if (registeredHouses.Contains(house))
         {
@@ -18,6 +29,7 @@ public class RegisteredHousesSO : ScriptableObject
             return;
         }
 
+        RegisterHouseDetails(house, details);
         registeredHouses.Add(house);
     }
 
@@ -26,17 +38,24 @@ public class RegisteredHousesSO : ScriptableObject
         registeredHouses.Remove(house);
     }
 
-    public HouseSO CreateAndRegisterHouse()
+    public HouseSO CreateAndRegisterHouse(HouseDetails details)
     {
         var newHouse = CreateInstance<HouseSO>();
         newHouse.name = $"House #{registeredHouses.Count}";
-        RegisterHouse(newHouse);
-
+        RegisterHouseDetails(newHouse, details);
+        RegisterHouse(newHouse, details);
         return newHouse;
     }
 
-    private void OnEnable()
+    private void RegisterHouseDetails(HouseSO house, HouseDetails details)
     {
-        registeredHouses = new();
+        if (houseDetailsMap.ContainsKey(house))
+        {
+            houseDetailsMap[house] = details;
+        }
+        else
+        {
+            houseDetailsMap.Add(house, details);
+        }
     }
 }

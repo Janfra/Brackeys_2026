@@ -1,9 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "Delivery Registry", menuName = "Scriptable Objects/Delivery/Delivery Registry")]
 public class DeliveryRegistrySO : ScriptableObject
 {
+    public event UnityAction<PackageDetailsSO> OnNewOrderRegistered;
+    public event UnityAction<PackageDetailsSO> OnOrderRemoved;
+
     [SerializeField]
     private RegisteredHousesSO houseRegistry;
 
@@ -20,12 +24,16 @@ public class DeliveryRegistrySO : ScriptableObject
         var newOrder = CreateInstance<PackageDetailsSO>();
         AssignOrderInformation(newOrder);
         deliveryOrders.Add(newOrder);
+        OnNewOrderRegistered?.Invoke(newOrder);
         return newOrder;
     }
 
     public void RemoveDeliveryOrder(PackageDetailsSO packageDetails)
     {
-        deliveryOrders.Remove(packageDetails);
+        if (deliveryOrders.Remove(packageDetails))
+        {
+            OnOrderRemoved?.Invoke(packageDetails);
+        }
     }
 
     private void AssignOrderInformation(PackageDetailsSO newOrder)
