@@ -185,6 +185,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b3aa5787cd7c434f98b274ee6013d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Package
-  heightOffset: 0.5
-  throwFowardForce: 7.5
-  throwUpwardForce: 2
+  grabConfiguration: {fileID: 11400000, guid: 1bc272594ee2e9f4cbef12f1b4359691, type: 2}

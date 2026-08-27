@@ -347,10 +347,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PackagePrefab
       objectReference: {fileID: 0}
-    - target: {fileID: 8522354880728020696, guid: d143f3c376e03344fbb072f1ba0a339d, type: 3}
-      propertyPath: grabConfiguration
-      value: 
-      objectReference: {fileID: 11400000, guid: 1bc272594ee2e9f4cbef12f1b4359691, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
