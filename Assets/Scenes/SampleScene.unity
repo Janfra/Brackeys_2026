@@ -525,6 +525,7 @@ GameObject:
   - component: {fileID: 1060023170}
   - component: {fileID: 1060023172}
   - component: {fileID: 1060023171}
+  - component: {fileID: 1060023173}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -571,7 +572,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 'Delivery:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -651,6 +652,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060023169}
   m_CullTransparentMesh: 1
+--- !u!114 &1060023173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060023169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46d7ab7c61ff01746919d0f80b9dafda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PackageInformation
+  houseRegistry: {fileID: 11400000, guid: 90f96f156d2baa846aa3d348666e0212, type: 2}
+  deliveryRegistry: {fileID: 11400000, guid: 54e38c5126f51044c9e2b18ceaa8acea, type: 2}
 --- !u!1001 &1241709464
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -669,7 +684,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5432700005110218322, guid: 00a693153ea17114ebc78cbef3d874d8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.17
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5432700005110218322, guid: 00a693153ea17114ebc78cbef3d874d8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -701,7 +716,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5583620700768027813, guid: 00a693153ea17114ebc78cbef3d874d8, type: 3}
       propertyPath: m_Name
-      value: House (1)
+      value: House 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1100,7 +1115,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5432700005110218322, guid: 00a693153ea17114ebc78cbef3d874d8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.086
+      value: 5.27
       objectReference: {fileID: 0}
     - target: {fileID: 5432700005110218322, guid: 00a693153ea17114ebc78cbef3d874d8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1132,7 +1147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5583620700768027813, guid: 00a693153ea17114ebc78cbef3d874d8, type: 3}
       propertyPath: m_Name
-      value: House
+      value: House 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

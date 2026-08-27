@@ -29,12 +29,17 @@ public class House : MonoBehaviour
             return;
         }
 
-        houseIdentifier = houseRegistry.CreateAndRegisterHouse(new(deliveryPoint.position));
+        houseIdentifier = houseRegistry.CreateAndRegisterHouse(new(deliveryPoint.position, null));
 
         // Make the house static just in case
         var rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
         rb.constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    private void OnDisable()
+    {
+        houseRegistry.UnregisterHouse(houseIdentifier);
     }
 
     // Requires rigidbody in order to receive message

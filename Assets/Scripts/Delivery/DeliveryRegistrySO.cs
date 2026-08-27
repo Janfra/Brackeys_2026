@@ -1,3 +1,4 @@
+using Janito.EditorExtras;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -16,7 +17,12 @@ public class DeliveryRegistrySO : ScriptableObject
 
     private void OnEnable()
     {
-        deliveryOrders = new List<PackageDetailsSO>();
+        deliveryOrders = new();
+    }
+
+    private void OnDisable()
+    {
+        deliveryOrders = new();
     }
 
     public PackageDetailsSO GetNewDeliveryOrder()
@@ -39,6 +45,8 @@ public class DeliveryRegistrySO : ScriptableObject
     private void AssignOrderInformation(PackageDetailsSO newOrder)
     {
         int randomIndex = Random.Range(0, houseRegistry.RegisteredHouses.Count);
-        newOrder.DeliveryHouse = houseRegistry.RegisteredHouses[randomIndex];
+        var house = houseRegistry.RegisteredHouses[randomIndex];
+        newOrder.DeliveryHouse = house;
+        newOrder.name = $"Delivery Order For {house.name}";
     }
 }

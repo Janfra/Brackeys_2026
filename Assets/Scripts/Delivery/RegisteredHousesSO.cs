@@ -16,6 +16,12 @@ public class RegisteredHousesSO : ScriptableObject
         houseDetailsMap = new();
     }
 
+    private void OnDisable()
+    {
+        registeredHouses = new();
+        houseDetailsMap = new();
+    }
+
     public bool TryGetHouseDetails(HouseSO house, out HouseDetails details)
     {
         return houseDetailsMap.TryGetValue(house, out details);
@@ -41,7 +47,7 @@ public class RegisteredHousesSO : ScriptableObject
     public HouseSO CreateAndRegisterHouse(HouseDetails details)
     {
         var newHouse = CreateInstance<HouseSO>();
-        newHouse.name = $"House #{registeredHouses.Count}";
+        newHouse.name = $"House #{registeredHouses.Count + 1}";
         RegisterHouseDetails(newHouse, details);
         RegisterHouse(newHouse, details);
         return newHouse;
@@ -49,6 +55,11 @@ public class RegisteredHousesSO : ScriptableObject
 
     private void RegisterHouseDetails(HouseSO house, HouseDetails details)
     {
+        if (string.IsNullOrEmpty(details.DisplayName))
+        {
+            details.DisplayName = house.name;
+        }
+
         if (houseDetailsMap.ContainsKey(house))
         {
             houseDetailsMap[house] = details;
