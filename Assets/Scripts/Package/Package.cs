@@ -7,6 +7,7 @@ public class Package : MonoBehaviour, IInteractable
 {
     [SerializeField]
     [CreateButton(namingFormat: "{name}GrabConfiguration", savePath: PathUtils.ProjectConfigurationPath + "/Grab")]
+    [InlineInspector]
     private GrabConfiguration grabConfiguration;
 
     public bool IsInteractable => interactor == null;
