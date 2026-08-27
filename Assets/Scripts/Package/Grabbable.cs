@@ -9,6 +9,7 @@ public class Grabbable
     public Rigidbody Rigidbody;
 
     [CreateButton(savePath: PathUtils.ProjectConfigurationPath + "/Grab")]
+    [InlineInspector]
     public GrabConfiguration GrabConfiguration;
 
     public Transform Holder { get; private set; }
