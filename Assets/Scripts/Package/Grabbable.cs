@@ -10,7 +10,7 @@ public class Grabbable
 
     [CreateButton(savePath: PathUtils.ProjectConfigurationPath + "/Grab")]
     [InlineInspector]
-    public GrabConfiguration GrabConfiguration;
+    public GrabConfigurationSO GrabConfiguration;
 
     public Transform Holder { get; private set; }
 

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Grab Configuration")]
-public class GrabConfiguration : ScriptableObject
+public class GrabConfigurationSO : ScriptableObject
 {
     [field: SerializeField]
     [Tooltip("Optional height offset to be applied when object is picked up")]

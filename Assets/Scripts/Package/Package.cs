@@ -6,9 +6,11 @@ using UnityEngine;
 public class Package : MonoBehaviour, IInteractable
 {
     [SerializeField]
-    [CreateButton(namingFormat: "{name}GrabConfiguration", savePath: PathUtils.ProjectConfigurationPath + "/Grab")]
+    [CreateButton(namingFormat: "{name} Grab Configuration", savePath: PathUtils.ProjectConfigurationPath + "/Grab")]
     [InlineInspector]
-    private GrabConfiguration grabConfiguration;
+    private GrabConfigurationSO grabConfiguration;
+
+    public PackageDetailsSO deliveryDetails;
 
     public bool IsInteractable => interactor == null;
 

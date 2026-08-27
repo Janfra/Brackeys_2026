@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1342ea82c7a7a374e9b9d674b084fee2, type: 3}
-  m_Name: PackageGrabConfiguration
+  m_Name: Package Grab Configuration
   m_EditorClassIdentifier: Assembly-CSharp::GrabConfiguration
   HeightOffset: 0.5
   <ThrowForce>k__BackingField:

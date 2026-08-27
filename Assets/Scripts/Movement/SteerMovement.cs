@@ -19,11 +19,11 @@ public class SteerMovement
     [SerializeField]
     private Vector2 validInputHorizontalDirection;
     
-    private MovementConfiguration configuration;
+    private MovementConfigurationSO configuration;
     private float throttle;
     private float steer;
 
-    public void SetConfiguration(MovementConfiguration config)
+    public void SetConfiguration(MovementConfigurationSO config)
     {
         configuration = config;
     }
