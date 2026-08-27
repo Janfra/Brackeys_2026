@@ -6,7 +6,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody))]
 public class Package : MonoBehaviour, IInteractable
 {
-    public event UnityAction OnDelivered
+    public event UnityAction<bool> OnDelivered
     {
         add
         {
@@ -25,7 +25,7 @@ public class Package : MonoBehaviour, IInteractable
 
     [Header("Events")]
     [SerializeField]
-    private UnityEvent onDelivered;
+    private UnityEvent<bool> onDelivered;
 
     [Header("Debug")]
     [ReadOnly]
@@ -43,10 +43,12 @@ public class Package : MonoBehaviour, IInteractable
         grabbable.GrabConfiguration = grabConfiguration;
     }
 
-    public void Deliver()
+    public void Deliver(bool wasCorrect)
     {
-        onDelivered?.Invoke();
+        onDelivered?.Invoke(wasCorrect);
         Release();
+
+        // Maybe add some logic for correct/incorrect delivery
 
         // For now just destroy me
         Destroy(gameObject);

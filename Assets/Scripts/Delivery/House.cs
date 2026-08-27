@@ -10,20 +10,32 @@ public class House : MonoBehaviour
     {
         if (other.TryGetComponent(out Package package))
         {
-            if (package.DeliveryDetails == null)
+            ProcessDeliveredPackage(package);
+        }
+        else if (other.TryGetComponent(out Interactor interactor))
+        {
+            // In case we collide with the interactor holding the package instead of the package itself
+            package = interactor.GetComponentInChildren<Package>();
+            if (package)
             {
-                LogLibrary.LogErrorInDevelopment<Package>($"Package delivery details are null.", package);
-                return;
+                ProcessDeliveredPackage(package);
             }
-
-            if (IsForThisAddress(package.DeliveryDetails))
-            {
-                package.Deliver();
-            }
-        }  
+        }
     }
 
-    public bool IsForThisAddress(PackageDetailsSO packageDetails)
+    public void ProcessDeliveredPackage(Package package)
+    {
+        if (package.DeliveryDetails == null)
+        {
+            LogLibrary.LogErrorInDevelopment<Package>($"Package delivery details are null.", package);
+            return;
+        }
+
+        bool isCorrect = IsForThisAddress(package.DeliveryDetails);
+        package.Deliver(isCorrect);
+    }
+
+    private bool IsForThisAddress(PackageDetailsSO packageDetails)
     {
         return packageDetails.DeliveryHouse == houseIdentifier;
     }
