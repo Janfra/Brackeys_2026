@@ -119,8 +119,18 @@ public class Package : MonoBehaviour, IInteractable
         EnablePhysics();
         transform.SetParent(null);
 
+        Vector3 relativeVelocity = GetAdditionalVelocityFromHolder();
         Vector3 throwDirection = interactor.transform.forward * throwFowardForce + interactor.transform.up * throwUpwardForce;
-        rigidbody.AddForce(throwDirection, ForceMode.Impulse);
+        rigidbody.AddForce(throwDirection + relativeVelocity, ForceMode.Impulse);
+    }
+
+    private Vector3 GetAdditionalVelocityFromHolder()
+    {
+        if (interactor.TryGetComponent(out Rigidbody rb))
+        {
+            return rb.linearVelocity;
+        }
+        return Vector3.zero;
     }
 
     private bool TryGetHeightFromCollider(GameObject go, out float height)
