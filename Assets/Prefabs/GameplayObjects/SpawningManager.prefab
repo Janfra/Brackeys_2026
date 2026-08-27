@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7468902346726446553}
+  - component: {fileID: 7880122943178575021}
   - component: {fileID: 2285925840289774622}
   m_Layer: 0
   m_Name: SpawningManager
@@ -33,6 +34,24 @@ Transform:
   - {fileID: 5530119704035004503}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7880122943178575021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5233796952471247451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b0923d84d5d4640a419e2d1a57c3b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PackageSpawner
+  packageSpawner: {fileID: 2285925840289774622}
+  spawnDelay:
+    Min: 5
+    Max: 10
+  minSpawnCount: 1
+  initialSpawnCount: 1
 --- !u!114 &2285925840289774622
 MonoBehaviour:
   m_ObjectHideFlags: 0

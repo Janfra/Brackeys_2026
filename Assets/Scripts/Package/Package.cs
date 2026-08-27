@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Package : MonoBehaviour, IInteractable
+public class Package : MonoBehaviour, IInteractable, ISpawnable
 {
     public event UnityAction<bool> OnDelivered
     {
@@ -35,6 +35,7 @@ public class Package : MonoBehaviour, IInteractable
     public PackageDetailsSO DeliveryDetails;
 
     public bool IsInteractable => interactor == null;
+    public ISpawnableDespawner Despawner { get; set; }
 
     private Grabbable grabbable = new();
     private Interactor interactor;
@@ -72,8 +73,7 @@ public class Package : MonoBehaviour, IInteractable
 
         // Maybe add some logic for correct/incorrect delivery
 
-        // For now just destroy me
-        Destroy(gameObject);
+        Despawner.Despawn(gameObject);
     }
 
     public void Interact(InteractPayload payload)
