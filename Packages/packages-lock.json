@@ -14,7 +14,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "0341b0f7eb384143838253dab181df3d053af812"
+      "hash": "a12f3c609c00b5f7ddecb652abe4012b6fe1dd09"
     },
     "com.janito.prototypingpackage": {
       "version": "https://github.com/Janfra/Janito-Unity-Packages.git?path=/JanitoPrototypingPackage",
