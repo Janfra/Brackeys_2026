@@ -10,7 +10,7 @@ public class Package : MonoBehaviour, IInteractable
     [InlineInspector]
     private GrabConfigurationSO grabConfiguration;
 
-    public PackageDetailsSO deliveryDetails;
+    public PackageDetailsSO DeliveryDetails;
 
     public bool IsInteractable => interactor == null;
 
