@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    [CreateButton(namingFormat: "{name} Movement Configuration", savePath: "Assets/ScriptableObjects/Configurations/Movement")]
+    [CreateButton(namingFormat: "{name} Movement Configuration", savePath: PathUtils.ProjectConfigurationPath + "/Movement")]
     [InlineInspector]
     private MovementConfiguration defaultConfiguration;
 

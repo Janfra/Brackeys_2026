@@ -7,6 +7,8 @@ public class Grabbable
 {
     public Transform Transform; 
     public Rigidbody Rigidbody;
+
+    [CreateButton(savePath: PathUtils.ProjectConfigurationPath + "/Grab")]
     public GrabConfiguration GrabConfiguration;
 
     public Transform Holder { get; private set; }
