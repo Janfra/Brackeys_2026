@@ -1,15 +1,34 @@
 using Janito.EditorExtras;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Package : MonoBehaviour, IInteractable
 {
+    public event UnityAction OnDelivered
+    {
+        add
+        {
+            onDelivered.AddListener(value);
+        }
+        remove
+        {
+            onDelivered.RemoveListener(value);
+        }
+    }
+
     [SerializeField]
     [CreateButton(namingFormat: "{name} Grab Configuration", savePath: PathUtils.ProjectConfigurationPath + "/Grab")]
     [InlineInspector]
     private GrabConfigurationSO grabConfiguration;
 
+    [Header("Events")]
+    [SerializeField]
+    private UnityEvent onDelivered;
+
+    [Header("Debug")]
+    [ReadOnly]
     public PackageDetailsSO DeliveryDetails;
 
     public bool IsInteractable => interactor == null;
@@ -22,6 +41,15 @@ public class Package : MonoBehaviour, IInteractable
         grabbable.Rigidbody = GetComponent<Rigidbody>();
         grabbable.Transform = transform;
         grabbable.GrabConfiguration = grabConfiguration;
+    }
+
+    public void Deliver()
+    {
+        onDelivered?.Invoke();
+        Release();
+
+        // For now just destroy me
+        Destroy(gameObject);
     }
 
     public void Interact(InteractPayload payload)
