@@ -1,75 +1,47 @@
-using Janito.EditorExtras;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Package : MonoBehaviour, IInteractable
 {
-    [SerializeField]
-    private float heightOffset = 1.0f;
-
-    [SerializeField]
-    private float throwFowardForce = 7.5f; // Temporary throw force
-    [SerializeField]
-    private float throwUpwardForce = 5.0f;
-
     public bool IsInteractable => interactor == null;
 
+    private Grabbable grabbable = new();
     private Interactor interactor;
-    private Rigidbody rigidbody;
 
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        grabbable.Rigidbody = GetComponent<Rigidbody>();
+        grabbable.Transform = transform;
     }
 
     public void Interact(InteractPayload payload)
     {
         if (payload == null || payload.Source == null || !IsInteractable) return;
 
-        DisablePhysics();
-        MoveOnTopOfObject(payload.Source.transform);
+        grabbable.Grab(payload.Source.transform);
         TrySetInteractorPackageOverride(payload);
     }
 
-    public void Collect()
+    public void Grab(Transform newHolder)
+    {
+        grabbable.Grab(newHolder);
+    }
+
+    public void Throw()
+    {
+        grabbable.Throw();
+    }
+
+    public void Release()
     {
         if (interactor != null)
         {
             interactor.OnShouldInteract = null;
             interactor = null;            
         }
-        transform.SetParent(null);
-    }
 
-    public void MoveOnTopOfObject(Transform target)
-    {
-        var position = target.position;
-        position.y += heightOffset;
-
-        if (TryGetHeightFromCollider(target.gameObject, out float yOffset))
-        {
-            position.y += yOffset;
-        }
-        else
-        {
-            this.LogWarningInDevelopment($"Unable to determine size of source from collider on {target.gameObject.name}. Using arbitrary offset instead.");
-            position.y += heightOffset; // Do height offset again as a fallback for now to try to put it on top
-        }
-
-        transform.position = position;
-        transform.rotation = target.rotation;
-        transform.SetParent(target.transform);
-    }
-
-    public void DisablePhysics()
-    {
-        rigidbody.isKinematic = true;
-    }
-    
-    public void EnablePhysics()
-    {
-        rigidbody.isKinematic = false;
+        grabbable.Release();
     }
 
     private void TrySetInteractorPackageOverride(InteractPayload payload)
@@ -87,7 +59,7 @@ public class Package : MonoBehaviour, IInteractable
 
         if (!hasValidInteractable)
         {
-            ThrowPackage();
+            grabbable.Throw();
         }
 
         interactor = null;
@@ -111,37 +83,6 @@ public class Package : MonoBehaviour, IInteractable
             }
         } 
 
-        return false;
-    }
-
-    private void ThrowPackage()
-    {
-        EnablePhysics();
-        transform.SetParent(null);
-
-        Vector3 relativeVelocity = GetAdditionalVelocityFromHolder();
-        Vector3 throwDirection = interactor.transform.forward * throwFowardForce + interactor.transform.up * throwUpwardForce;
-        rigidbody.AddForce(throwDirection + relativeVelocity, ForceMode.Impulse);
-    }
-
-    private Vector3 GetAdditionalVelocityFromHolder()
-    {
-        if (interactor.TryGetComponent(out Rigidbody rb))
-        {
-            return rb.linearVelocity;
-        }
-        return Vector3.zero;
-    }
-
-    private bool TryGetHeightFromCollider(GameObject go, out float height)
-    {
-        if (go.TryGetComponent(out Collider collider))
-        {
-            height = collider.bounds.extents.y;
-            return true;
-        }
-
-        height = 0.0f;
         return false;
     }
 }

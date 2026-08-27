@@ -11,9 +11,7 @@ public class TempPackageInteract : MonoBehaviour, IPackageInteractable
         if (package != null)
         {
             this.LogInDevelopment("Packaged");
-            package.Collect();
-            package.DisablePhysics();
-            package.MoveOnTopOfObject(transform);
+            package.Grab(transform);
         }
     }
 }
