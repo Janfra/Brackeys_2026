@@ -8,5 +8,5 @@ public class GrabConfiguration : ScriptableObject
     public float HeightOffset = 0.5f;
 
     [field: SerializeField]
-    public DirectionalThrowForce ThrowForce { get; private set; }
+    public DirectionalThrowForce ThrowForce { get; private set; } = new(7.5f, 2.0f);
 }
