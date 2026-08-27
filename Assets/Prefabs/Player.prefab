@@ -523,7 +523,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e2076333ba43d444971d78f177d2c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  configuration: {fileID: 11400000, guid: 3af9efc70c7d75946a6ef9153170d97a, type: 2}
+  defaultConfiguration: {fileID: 11400000, guid: 3af9efc70c7d75946a6ef9153170d97a, type: 2}
+  steerMovement:
+    Rigidbody: {fileID: 0}
+    Transform: {fileID: 0}
+    speed: 0
+    velocity: {x: 0, y: 0, z: 0}
+    validInputHorizontalDirection: {x: 0, y: 0}
 --- !u!54 &7446447499730491431
 Rigidbody:
   m_ObjectHideFlags: 0

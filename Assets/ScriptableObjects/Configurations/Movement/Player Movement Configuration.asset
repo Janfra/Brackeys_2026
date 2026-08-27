@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 5149bd76154f6b348ae1a4f90159dc9f, type: 3}
   m_Name: Player Movement Configuration
-  m_EditorClassIdentifier: Assembly-CSharp::MovementConfiguration
+  m_EditorClassIdentifier: Assembly-CSharp::MovementConfigurationSO
   <SpeedStats>k__BackingField:
     MaxSpeed: 12
     AccelerationRate: 24.8
     DecelerationRate: 28
   <RotationStats>k__BackingField:
-    RotationSpeed: 265.7
+    RotationSpeed: 265
     RotationStep: 179

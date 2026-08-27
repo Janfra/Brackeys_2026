@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a69f1ead7d06efa45a2e33d56873c3ea, type: 3}
-  m_Name: House 1
-  m_EditorClassIdentifier: Assembly-CSharp::HouseSO
+  m_Script: {fileID: 11500000, guid: 275bdabf0d411334b9a26eddc6726aa4, type: 3}
+  m_Name: House Registry (Unique)
+  m_EditorClassIdentifier: Assembly-CSharp::RegisteredHousesSO

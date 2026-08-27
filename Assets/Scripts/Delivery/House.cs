@@ -1,11 +1,28 @@
 using Janito.EditorExtras;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class House : MonoBehaviour
 {
     [SerializeField]
+    private RegisteredHousesSO houseRegistry;
+
+    [Header("Debug")]
+    [ReadOnly]
+    [SerializeField]
     private HouseSO houseIdentifier;
 
+    private void Awake()
+    {
+        houseIdentifier = houseRegistry.CreateAndRegisterHouse();
+
+        // Make the house static just in case
+        var rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    // Requires rigidbody in order to receive message
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Package package))

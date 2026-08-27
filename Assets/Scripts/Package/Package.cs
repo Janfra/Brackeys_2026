@@ -23,6 +23,9 @@ public class Package : MonoBehaviour, IInteractable
     [InlineInspector]
     private GrabConfigurationSO grabConfiguration;
 
+    [SerializeField]
+    private DeliveryRegistrySO deliveryRegistry;
+
     [Header("Events")]
     [SerializeField]
     private UnityEvent<bool> onDelivered;
@@ -41,12 +44,31 @@ public class Package : MonoBehaviour, IInteractable
         grabbable.Rigidbody = GetComponent<Rigidbody>();
         grabbable.Transform = transform;
         grabbable.GrabConfiguration = grabConfiguration;
+
+        if (deliveryRegistry == null)
+        {
+            this.LogErrorInDevelopment($"Delivery registry is null in package. Registry must be provided to generate package details.");
+        }
+    }
+
+    private void OnEnable()
+    {
+        DeliveryDetails = deliveryRegistry.GetNewDeliveryOrder();
+    }
+
+    private void OnDisable()
+    {
+        if (DeliveryDetails)
+        {
+            deliveryRegistry.RemoveDeliveryOrder(DeliveryDetails);
+        }
     }
 
     public void Deliver(bool wasCorrect)
     {
         onDelivered?.Invoke(wasCorrect);
         Release();
+        deliveryRegistry.RemoveDeliveryOrder(DeliveryDetails);
 
         // Maybe add some logic for correct/incorrect delivery
 
