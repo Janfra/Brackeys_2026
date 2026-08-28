@@ -52,10 +52,18 @@ public class DeliveryRegistrySO : ScriptableObject
 
     private void AssignOrderInformation(PackageDetailsSO newOrder)
     {
-        int randomIndex = Random.Range(0, houseRegistry.RegisteredHouses.Count);
-        var house = houseRegistry.RegisteredHouses[randomIndex];
+        int count = houseRegistry.RegisteredHouses.Count;
+        HouseSO house = null;
+        string targetName = "Nowhere";
+        if (count > 0)
+        {
+            int randomIndex = Random.Range(0, count);
+            house = houseRegistry.RegisteredHouses[randomIndex];
+            targetName = house.name;
+        }
+
         newOrder.DeliveryHouse = house;
-        newOrder.name = $"Delivery Order For {house.name}";
+        newOrder.name = $"Delivery Order For {targetName}";
         newOrder.ExpirationTimer = new(expirationTime);
     }
 }
