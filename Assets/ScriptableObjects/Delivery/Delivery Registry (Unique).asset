@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Delivery Registry (Unique)
   m_EditorClassIdentifier: Assembly-CSharp::DeliveryRegistrySO
   houseRegistry: {fileID: 11400000, guid: 90f96f156d2baa846aa3d348666e0212, type: 2}
-  expirationTime: 20
+  expirationTime: 90
