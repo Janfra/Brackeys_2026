@@ -1230,6 +1230,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 652341416}
     m_Modifications:
+    - target: {fileID: 5905913512368800461, guid: 62b5989a6c4bfe84eaf1d1337592cbd3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8371113923454584448, guid: 62b5989a6c4bfe84eaf1d1337592cbd3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1273,6 +1277,10 @@ PrefabInstance:
     - target: {fileID: 8802215486482633062, guid: 62b5989a6c4bfe84eaf1d1337592cbd3, type: 3}
       propertyPath: m_Name
       value: PlayerController
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802215486482633062, guid: 62b5989a6c4bfe84eaf1d1337592cbd3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1431,33 +1439,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1400619568}
     m_Modifications:
-    - target: {fileID: 322450068131043552, guid: 664febbc6ae26ce4bac92db3640663a2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 817896404281987193, guid: 664febbc6ae26ce4bac92db3640663a2, type: 3}
       propertyPath: m_Name
       value: Minimap
-      objectReference: {fileID: 0}
-    - target: {fileID: 1513282896051075807, guid: 664febbc6ae26ce4bac92db3640663a2, type: 3}
-      propertyPath: far clip plane
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 1513282896051075807, guid: 664febbc6ae26ce4bac92db3640663a2, type: 3}
-      propertyPath: orthographic size
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 1780858390357778723, guid: 664febbc6ae26ce4bac92db3640663a2, type: 3}
-      propertyPath: m_Name
-      value: MinimapSettings
-      objectReference: {fileID: 0}
-    - target: {fileID: 2476829614151974042, guid: 664febbc6ae26ce4bac92db3640663a2, type: 3}
-      propertyPath: FollowOffset.y
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 2953650138751277621, guid: 664febbc6ae26ce4bac92db3640663a2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2994127757920254429, guid: 664febbc6ae26ce4bac92db3640663a2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1498,14 +1482,6 @@ PrefabInstance:
     - target: {fileID: 2994127757920254429, guid: 664febbc6ae26ce4bac92db3640663a2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5139504878476530692, guid: 664febbc6ae26ce4bac92db3640663a2, type: 3}
-      propertyPath: Lens.FarClipPlane
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 5139504878476530692, guid: 664febbc6ae26ce4bac92db3640663a2, type: 3}
-      propertyPath: Lens.OrthographicSize
-      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 5139504878476530692, guid: 664febbc6ae26ce4bac92db3640663a2, type: 3}
       propertyPath: Target.TrackingTarget
