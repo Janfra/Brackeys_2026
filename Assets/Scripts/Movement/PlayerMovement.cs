@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private SteerMovement steerMovement = new();
     private Vector2 input;
 
+    public IReadOnlyMovement ReadOnlyMovement => steerMovement;
+
     private void Awake()
     {
         steerMovement.Rigidbody = GetComponent<Rigidbody>();

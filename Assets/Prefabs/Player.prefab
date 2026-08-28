@@ -289,6 +289,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e863182f0ed0d304eb90c50664ddf055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  animator: {fileID: 8575831018865815270}
+  velocityParameter: {fileID: 11400000, guid: 902aa8b9aeba43d41a06b0a821465798, type: 2}
 --- !u!1 &5784007590036349198
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,5 +445,10 @@ PrefabInstance:
 --- !u!4 &2441887831203263644 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 137460341962364164, guid: 66e6c47cef2940841a24a52670c6cbe5, type: 3}
+  m_PrefabInstance: {fileID: 2308956244668768664}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8575831018865815270 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6271394041869569918, guid: 66e6c47cef2940841a24a52670c6cbe5, type: 3}
   m_PrefabInstance: {fileID: 2308956244668768664}
   m_PrefabAsset: {fileID: 0}
