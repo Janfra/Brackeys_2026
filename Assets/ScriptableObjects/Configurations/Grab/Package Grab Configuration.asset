@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1342ea82c7a7a374e9b9d674b084fee2, type: 3}
   m_Name: Package Grab Configuration
   m_EditorClassIdentifier: Assembly-CSharp::GrabConfiguration
-  HeightOffset: 0.7
+  HeightOffset: 1
   <ThrowForce>k__BackingField:
     ForwardStrength: 7.5
     UpwardStrength: 2
