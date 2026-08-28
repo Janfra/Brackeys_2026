@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 2476829614151974042}
   - component: {fileID: 1602284657583659167}
   m_Layer: 31
-  m_Name: MinimapBounds
+  m_Name: MinimapSettings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ Transform:
   m_GameObject: {fileID: 1780858390357778723}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70090926, y: -0.000000009457362, z: 0.000000009293722, w: 0.7132505}
-  m_LocalPosition: {x: 0, y: 21, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -93,9 +93,9 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 40
-    OrthographicSize: 25
+    OrthographicSize: 35
     NearClipPlane: 0.1
-    FarClipPlane: 50
+    FarClipPlane: 60
     Dutch: 0
     ModeOverride: 1
     PhysicalProperties:
@@ -129,7 +129,7 @@ MonoBehaviour:
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
-  FollowOffset: {x: 0, y: 50, z: 0}
+  FollowOffset: {x: 0, y: 30, z: 0}
 --- !u!114 &1602284657583659167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,10 +210,10 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 50
+  far clip plane: 60
   field of view: 40
   orthographic: 1
-  orthographic size: 25
+  orthographic size: 35
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
