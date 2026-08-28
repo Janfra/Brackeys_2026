@@ -1292,6 +1292,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1400619568}
     m_Modifications:
+    - target: {fileID: 2047846390099456547, guid: ebb7dfc0016b30743a3ea90442b2c40f, type: 3}
+      propertyPath: field of view
+      value: 60.000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 2047846390099456547, guid: ebb7dfc0016b30743a3ea90442b2c40f, type: 3}
+      propertyPath: far clip plane
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2047846390099456547, guid: ebb7dfc0016b30743a3ea90442b2c40f, type: 3}
+      propertyPath: near clip plane
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2047846390099456547, guid: ebb7dfc0016b30743a3ea90442b2c40f, type: 3}
+      propertyPath: orthographic size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2733240928698538411, guid: ebb7dfc0016b30743a3ea90442b2c40f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1314,11 +1330,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2733240928698538411, guid: ebb7dfc0016b30743a3ea90442b2c40f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000043813095
+      value: -0.0000000438131
       objectReference: {fileID: 0}
     - target: {fileID: 2733240928698538411, guid: ebb7dfc0016b30743a3ea90442b2c40f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000011897908
+      value: 0.000000011897909
       objectReference: {fileID: 0}
     - target: {fileID: 2733240928698538411, guid: ebb7dfc0016b30743a3ea90442b2c40f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -225,7 +225,7 @@ MonoBehaviour:
     Rigidbody: {fileID: 0}
     Transform: {fileID: 0}
     speed: 0
-    velocity: {x: 0, y: 0, z: 0}
+    desiredVelocity: {x: 0, y: 0, z: 0}
     validInputHorizontalDirection: {x: 0, y: 0}
 --- !u!54 &7446447499730491431
 Rigidbody:
@@ -298,6 +298,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  minVelocity: 0.7
 --- !u!1 &5784007590036349198
 GameObject:
   m_ObjectHideFlags: 0
