@@ -12,6 +12,12 @@ public class DeliveryRegistrySO : ScriptableObject
     [SerializeField]
     private RegisteredHousesSO houseRegistry;
 
+    [SerializeField]
+    [Min(1.0f)]
+    private float expirationTime;
+
+    private const float destroyDelay = 1.0f;
+
     private List<PackageDetailsSO> deliveryOrders;
     public IReadOnlyList<PackageDetailsSO> DeliveryOrders => deliveryOrders;
 
@@ -39,6 +45,8 @@ public class DeliveryRegistrySO : ScriptableObject
         if (deliveryOrders.Remove(packageDetails))
         {
             OnOrderRemoved?.Invoke(packageDetails);
+            packageDetails.Dispose();
+            Destroy(packageDetails, destroyDelay); // No pooling, just destroy the object once disposed
         }
     }
 
@@ -48,5 +56,6 @@ public class DeliveryRegistrySO : ScriptableObject
         var house = houseRegistry.RegisteredHouses[randomIndex];
         newOrder.DeliveryHouse = house;
         newOrder.name = $"Delivery Order For {house.name}";
+        newOrder.ExpirationTimer = new(expirationTime);
     }
 }

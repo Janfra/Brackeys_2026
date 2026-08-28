@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [Serializable]
-public class Timer : IReadOnlyTimer
+public class Timer : IReadOnlyTimer, IDisposable
 {
     public event UnityAction OnCompleted;
 
     [field: SerializeField]
+    [Min(0.0f)]
     public float Duration { get; set; }
     [field: SerializeField]
     public bool IsLooping { get; set; }
@@ -17,11 +18,16 @@ public class Timer : IReadOnlyTimer
 
     [field: SerializeField]
     [field: Space]
-    [ReadOnly]
+    [field: ReadOnly]
     public float ElapsedTime { get; private set; }
 
     public float NormalisedTime => Mathf.Min(ElapsedTime, Duration) / Duration;
     public float InversedNormalisedTime => 1 - NormalisedTime;
+
+    public Timer(float duration)
+    {
+        Duration = duration;
+    }
 
     public Timer(float duration, UnityAction onComplete)
     {
@@ -53,6 +59,11 @@ public class Timer : IReadOnlyTimer
         {
             Ended();
         }
+    }
+
+    public void Dispose()
+    {
+        OnCompleted = null;
     }
 
     private void Ended()

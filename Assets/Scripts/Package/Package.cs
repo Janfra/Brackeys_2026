@@ -1,4 +1,5 @@
 using Janito.EditorExtras;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -57,13 +58,25 @@ public class Package : MonoBehaviour, IInteractable, ISpawnable
     private void OnEnable()
     {
         DeliveryDetails = deliveryRegistry.GetNewDeliveryOrder();
+        DeliveryDetails.ExpirationTimer.OnCompleted += FailDelivery;
+        DeliveryDetails.ExpirationTimer.IsRunning = true;
     }
 
     private void OnDisable()
     {
         if (DeliveryDetails)
         {
+            DeliveryDetails.ExpirationTimer.OnCompleted -= FailDelivery; // Should not need to clean up since dispose clears it
             deliveryRegistry.RemoveDeliveryOrder(DeliveryDetails);
+            DeliveryDetails = null;
+        }
+    }
+
+    private void Update()
+    {
+        if (DeliveryDetails)
+        {
+            DeliveryDetails.ExpirationTimer.Update(Time.deltaTime);
         }
     }
 
@@ -109,6 +122,11 @@ public class Package : MonoBehaviour, IInteractable, ISpawnable
         }
 
         grabbable.Release();
+    }
+
+    private void FailDelivery()
+    {
+        Deliver(false);
     }
 
     private void TrySetInteractorPackageOverride(InteractPayload payload)
