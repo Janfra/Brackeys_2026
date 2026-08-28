@@ -4,13 +4,16 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [Serializable]
-public class Timer
+public class Timer : IReadOnlyTimer
 {
     public event UnityAction OnCompleted;
 
-    public float Duration;
-    public bool IsLooping;
-    public bool IsRunning;
+    [field: SerializeField]
+    public float Duration { get; set; }
+    [field: SerializeField]
+    public bool IsLooping { get; set; }
+    [field: SerializeField]
+    public bool IsRunning { get; set; }
 
     [field: SerializeField]
     [field: Space]
