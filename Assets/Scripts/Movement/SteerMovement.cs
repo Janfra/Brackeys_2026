@@ -14,7 +14,7 @@ public class SteerMovement : IReadOnlyMovement
     private float speed;
     [ReadOnly]
     [SerializeField]
-    private Vector3 velocity;
+    private Vector3 desiredVelocity;
     [ReadOnly]
     [SerializeField]
     private Vector2 validInputHorizontalDirection;
@@ -74,14 +74,14 @@ public class SteerMovement : IReadOnlyMovement
     {
         if (throttle != 0)
         {
-            velocity = Transform.forward * throttle * speed;
+            desiredVelocity = Transform.forward * throttle * speed;
         }
         else
         {
-            velocity = Transform.forward * validInputHorizontalDirection.x * speed;
+            desiredVelocity = Transform.forward * validInputHorizontalDirection.x * speed;
         }
 
-        var appliedVelocity = velocity - Rigidbody.linearVelocity;
+        var appliedVelocity = desiredVelocity - Rigidbody.linearVelocity;
         Rigidbody.AddForce(appliedVelocity, ForceMode.VelocityChange);
     }
 
