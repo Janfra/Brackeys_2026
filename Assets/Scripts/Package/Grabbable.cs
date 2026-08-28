@@ -82,6 +82,10 @@ public class Grabbable
     private void DisablePhysics()
     {
         Rigidbody.isKinematic = true;
+
+        // Clear any remaining velocities
+        Rigidbody.angularVelocity = Vector3.zero;
+        Rigidbody.linearVelocity = Vector3.zero;
     }
 
     private void EnablePhysics()

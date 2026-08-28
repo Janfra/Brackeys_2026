@@ -39,10 +39,12 @@ public class Package : MonoBehaviour, IInteractable, ISpawnable
 
     private Grabbable grabbable = new();
     private Interactor interactor;
+    private Rigidbody rb;
 
     private void Awake()
     {
-        grabbable.Rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
+        grabbable.Rigidbody = rb;
         grabbable.Transform = transform;
         grabbable.GrabConfiguration = grabConfiguration;
 
@@ -72,6 +74,10 @@ public class Package : MonoBehaviour, IInteractable, ISpawnable
         deliveryRegistry.RemoveDeliveryOrder(DeliveryDetails);
 
         // Maybe add some logic for correct/incorrect delivery
+
+        // Clear remaining velocities for clean up
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
 
         Despawner.Despawn(gameObject);
     }
