@@ -8,7 +8,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Animator animator;
     [SerializeField]
-    private AnimatorParameterHasher velocityParameter; 
+    private AnimatorParameterHasher velocityParameter;
+    [SerializeField]
+    private AnimatorParameterHasher runMultiplierParameter;
+    [SerializeField]
+    private AnimationCurve runMultiplierCurve;
 
     private Interactor interactor;
     private PlayerMovement movement;
@@ -24,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private void LateUpdate()
     {
         animator.SetFloat(velocityParameter, movementData.Speed);
+        animator.SetFloat(runMultiplierParameter, runMultiplierCurve.Evaluate(movementData.Speed / movementData.MaxSpeed));
     }
 
     public void OnInteract(InputAction.CallbackContext context)
