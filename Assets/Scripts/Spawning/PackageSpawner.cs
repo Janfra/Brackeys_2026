@@ -1,5 +1,4 @@
 using Janito.EditorExtras;
-using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Spawner))]
@@ -15,9 +14,22 @@ public class PackageSpawner : MonoBehaviour
     private int minSpawnCount = 1;
 
     [SerializeField]
+    private int maxSpawnCount = 3;
+
+    [SerializeField]
     private int initialSpawnCount = 1;
 
+    [Header("Debug")]
+    [SerializeField]
+    [ReadOnly]
+    private Timer spawnTimer;
+    
+    [SerializeField]
+    [ReadOnly]
     private int spawnCount;
+
+    private bool canSpawnMore => spawnCount < maxSpawnCount;
+    private bool needsMoreSpawned => spawnCount < minSpawnCount;
 
     private void Awake()
     {
@@ -27,6 +39,8 @@ public class PackageSpawner : MonoBehaviour
         }
 
         packageSpawner.OnDespawn += UpdateSpawnCount;
+
+        spawnTimer = new(spawnDelay.GetRandomInRange(), true, OnSpawnTimer);
     }
 
     private void Start()
@@ -35,14 +49,24 @@ public class PackageSpawner : MonoBehaviour
         {
             SpawnPackage();
         }
+
+        spawnTimer.IsRunning = true;
+    }
+
+    private void Update()
+    {
+        if (canSpawnMore)
+        {
+            spawnTimer.Update(Time.deltaTime);
+        }
     }
 
     private void UpdateSpawnCount(GameObject package)
     {
         spawnCount--;
-        if (spawnCount < minSpawnCount)
+        if (needsMoreSpawned)
         {
-            SpawnPackage();
+            SpawnPackage(); // Could line up with timer spawn
         }
     }
 
@@ -52,4 +76,9 @@ public class PackageSpawner : MonoBehaviour
         packageSpawner.SpawnObject();
     }
 
+    private void OnSpawnTimer()
+    {
+        SpawnPackage();
+        spawnTimer.Duration = spawnDelay.GetRandomInRange();
+    }
 }
