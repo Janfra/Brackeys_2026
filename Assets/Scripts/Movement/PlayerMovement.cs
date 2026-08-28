@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 input;
 
     public IReadOnlyMovement ReadOnlyMovement => steerMovement;
+    public Vector2 Input => input;
 
     private void Awake()
     {

@@ -30,7 +30,8 @@ public class PlayerController : MonoBehaviour
     private void LateUpdate()
     {
         animator.SetFloat(velocityParameter, movementData.Velocity.sqrMagnitude > minVelocity ? movementData.Speed : 0.0f);
-        animator.SetFloat(runMultiplierParameter, runMultiplierCurve.Evaluate(movementData.Speed / movementData.MaxSpeed));
+        var newRunMultiplier = runMultiplierCurve.Evaluate(movementData.Speed / movementData.MaxSpeed);
+        animator.SetFloat(runMultiplierParameter, movement.Input.x > 0 ? newRunMultiplier : -newRunMultiplier); // Make multiplier negative if input is moving backwards to play inverse animation to show as running back
     }
 
     public void OnInteract(InputAction.CallbackContext context)
