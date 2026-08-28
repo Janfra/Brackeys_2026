@@ -4,4 +4,6 @@ public class PackageDetailsSO : ScriptableObject
 {
     public HouseSO DeliveryHouse;
     public Timer ExpirationTimer;
+
+    public IReadOnlyTimer ReadOnlyExpirationTimer => ExpirationTimer;
 }
