@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class SteerMovement
+public class SteerMovement : IReadOnlyMovement
 {
     public Rigidbody Rigidbody;
     public Transform Transform;
@@ -22,6 +22,10 @@ public class SteerMovement
     private MovementConfigurationSO configuration;
     private float throttle;
     private float steer;
+
+    public float Speed => speed;
+    public float MaxSpeed => configuration ? configuration.MaxSpeed : 0.0f;
+    public Vector3 Velocity => velocity;
 
     public void SetConfiguration(MovementConfigurationSO config)
     {
