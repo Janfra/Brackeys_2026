@@ -291,6 +291,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   animator: {fileID: 8575831018865815270}
   velocityParameter: {fileID: 11400000, guid: 902aa8b9aeba43d41a06b0a821465798, type: 2}
+  runMultiplierParameter: {fileID: 11400000, guid: a116518cf409bc9418b80ab42ab711e5, type: 2}
+  runMultiplierCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5784007590036349198
 GameObject:
   m_ObjectHideFlags: 0

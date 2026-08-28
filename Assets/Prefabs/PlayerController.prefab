@@ -170,6 +170,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 797782724600015192, guid: b29c1969a87adb940b7991842b4accd4, type: 3}
+      propertyPath: runMultiplierCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 797782724600015192, guid: b29c1969a87adb940b7991842b4accd4, type: 3}
+      propertyPath: runMultiplierCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 797782724600015192, guid: b29c1969a87adb940b7991842b4accd4, type: 3}
+      propertyPath: runMultiplierCurve.m_Curve.Array.data[0].value
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 797782724600015192, guid: b29c1969a87adb940b7991842b4accd4, type: 3}
+      propertyPath: runMultiplierCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 797782724600015192, guid: b29c1969a87adb940b7991842b4accd4, type: 3}
+      propertyPath: runMultiplierCurve.m_Curve.Array.data[0].inSlope
+      value: 0.28868243
+      objectReference: {fileID: 0}
+    - target: {fileID: 797782724600015192, guid: b29c1969a87adb940b7991842b4accd4, type: 3}
+      propertyPath: runMultiplierCurve.m_Curve.Array.data[1].inSlope
+      value: 1.1845926
+      objectReference: {fileID: 0}
+    - target: {fileID: 797782724600015192, guid: b29c1969a87adb940b7991842b4accd4, type: 3}
+      propertyPath: runMultiplierCurve.m_Curve.Array.data[0].outSlope
+      value: 0.28868243
+      objectReference: {fileID: 0}
+    - target: {fileID: 797782724600015192, guid: b29c1969a87adb940b7991842b4accd4, type: 3}
+      propertyPath: runMultiplierCurve.m_Curve.Array.data[1].inWeight
+      value: 0.02449894
+      objectReference: {fileID: 0}
+    - target: {fileID: 797782724600015192, guid: b29c1969a87adb940b7991842b4accd4, type: 3}
+      propertyPath: runMultiplierCurve.m_Curve.Array.data[1].outSlope
+      value: 1.1845926
+      objectReference: {fileID: 0}
+    - target: {fileID: 797782724600015192, guid: b29c1969a87adb940b7991842b4accd4, type: 3}
+      propertyPath: runMultiplierCurve.m_Curve.Array.data[0].outWeight
+      value: 0.036191534
+      objectReference: {fileID: 0}
     - target: {fileID: 3646068809263788637, guid: b29c1969a87adb940b7991842b4accd4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

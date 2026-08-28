@@ -25,7 +25,7 @@ public class SteerMovement : IReadOnlyMovement
 
     public float Speed => speed;
     public float MaxSpeed => configuration ? configuration.MaxSpeed : 0.0f;
-    public Vector3 Velocity => velocity;
+    public Vector3 Velocity => Rigidbody.linearVelocity;
 
     public void SetConfiguration(MovementConfigurationSO config)
     {
@@ -81,7 +81,8 @@ public class SteerMovement : IReadOnlyMovement
             velocity = Transform.forward * validInputHorizontalDirection.x * speed;
         }
 
-        Rigidbody.linearVelocity = velocity;
+        var appliedVelocity = velocity - Rigidbody.linearVelocity;
+        Rigidbody.AddForce(appliedVelocity, ForceMode.VelocityChange);
     }
 
     private void SetFacingDirection(float deltaTime)
