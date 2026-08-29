@@ -1063,10 +1063,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 669382473}
     m_Modifications:
-    - target: {fileID: 5294679004992892672, guid: 483cc4bd895faa146b81e8528e2b3848, type: 3}
-      propertyPath: deliveryRegistry
-      value: 
-      objectReference: {fileID: 11400000, guid: 54e38c5126f51044c9e2b18ceaa8acea, type: 2}
     - target: {fileID: 5793356722954969189, guid: 483cc4bd895faa146b81e8528e2b3848, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1223,5 +1219,5 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1400619568}
-  - {fileID: 1533727511}
   - {fileID: 669382473}
+  - {fileID: 1533727511}

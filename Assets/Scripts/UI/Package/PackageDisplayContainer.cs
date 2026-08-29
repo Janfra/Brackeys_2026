@@ -10,23 +10,36 @@ public class PackageDisplayContainer : MonoBehaviour
     private PackageDisplay prefab;
     [SerializeField]
     private SpawningConfigurationSO packagesSpawningInfo;
+    [SerializeField]
+    private int bufferSize = 2;
 
     private Queue<PackageDisplay> availablePackages = new();
     private Dictionary<PackageDetailsSO, PackageDisplay> packageDetailsDisplayMap = new();
 
     private void Awake()
     {
-        for (int i = 0; i < packagesSpawningInfo.MaxSpawnCount; i++)
+        for (int i = 0; i < packagesSpawningInfo.MaxSpawnCount + bufferSize; i++)
         {
             CreatePackageDisplay();
         }
+    }
 
-        deliveryRegistry.OnNewOrderRegistered += DisplayPackageInformation; 
+    private void OnEnable()
+    {
+        deliveryRegistry.OnNewOrderRegistered += DisplayPackageInformation;
         deliveryRegistry.OnOrderRemoved += FreeAssignedPackageDisplay;
+    }
+
+    private void OnDisable()
+    {
+        deliveryRegistry.OnNewOrderRegistered -= DisplayPackageInformation;
+        deliveryRegistry.OnOrderRemoved -= FreeAssignedPackageDisplay;
     }
 
     private void DisplayPackageInformation(PackageDetailsSO packageDetails)
     {
+        if (packageDetails == null) return;
+
         var display = ReservePackageDisplay();
         display.AssignPackage(packageDetails);
         if (packageDetailsDisplayMap.TryAdd(packageDetails, display))
@@ -37,6 +50,8 @@ public class PackageDisplayContainer : MonoBehaviour
 
     private void FreeAssignedPackageDisplay(PackageDetailsSO packageDetails)
     {
+        if (packageDetails == null) return;
+
         if (packageDetailsDisplayMap.TryGetValue(packageDetails, out var Display))
         {
             if (Display != null)

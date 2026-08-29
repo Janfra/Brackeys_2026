@@ -17,7 +17,7 @@ public class PackageDisplay : MonoBehaviour
     {
         if (PackageDetails != null)
         {
-            ExpirationSlider.value = PackageDetails.ExpirationTimer.NormalisedTime;
+            ExpirationSlider.value = PackageDetails.ExpirationTimer.InversedNormalisedTime;
         }
     }
 
