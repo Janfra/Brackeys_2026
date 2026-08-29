@@ -102,6 +102,8 @@ GameObject:
   - component: {fileID: 6224669402113575076}
   - component: {fileID: 2524214274278844911}
   - component: {fileID: 8522354880728020696}
+  - component: {fileID: 1272046982202842056}
+  - component: {fileID: 4836832960652186031}
   m_Layer: 0
   m_Name: PackagePrefab
   m_TagString: Untagged
@@ -192,6 +194,41 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   DeliveryDetails: {fileID: 0}
+--- !u!114 &1272046982202842056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7752233166635095354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0bf6e374399363439a558087e0385e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PackageAnimator
+  appearParameter: {fileID: 11400000, guid: 8ecc6a712a9f3f94294fbccf66c8011a, type: 2}
+--- !u!95 &4836832960652186031
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7752233166635095354}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 936f33f959eead642a8dd6597f1cc203, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &8509802688234518511
 PrefabInstance:
   m_ObjectHideFlags: 0
