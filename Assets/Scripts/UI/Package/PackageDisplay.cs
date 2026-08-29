@@ -7,8 +7,11 @@ public class PackageDisplay : MonoBehaviour
     [field: SerializeField]
     public Slider ExpirationSlider { get; private set; }
 
+    [SerializeField]
     [ReadOnly]
-    public PackageDetailsSO PackageDetails;
+    private PackageDetailsSO packageDetails;
+
+    public PackageDetailsSO PackageDetails => packageDetails;
 
     private void LateUpdate()
     {
@@ -16,5 +19,10 @@ public class PackageDisplay : MonoBehaviour
         {
             ExpirationSlider.value = PackageDetails.ExpirationTimer.NormalisedTime;
         }
+    }
+
+    public void AssignPackage(PackageDetailsSO assignedPackageDetails)
+    {
+        packageDetails = assignedPackageDetails;
     }
 }
