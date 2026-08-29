@@ -8,16 +8,9 @@ public class PackageSpawner : MonoBehaviour
     private Spawner packageSpawner;
 
     [SerializeField]
-    private FloatRange spawnDelay = new(5.0f, 10.0f);
-
-    [SerializeField]
-    private int minSpawnCount = 1;
-
-    [SerializeField]
-    private int maxSpawnCount = 3;
-
-    [SerializeField]
-    private int initialSpawnCount = 1;
+    [CreateButton(savePath: PathUtils.ProjectConfigurationPath + "/Spawner")]
+    [InlineInspector]
+    private SpawningConfigurationSO spawningConfiguration;
 
     [Header("Debug")]
     [SerializeField]
@@ -28,8 +21,8 @@ public class PackageSpawner : MonoBehaviour
     [ReadOnly]
     private int spawnCount;
 
-    private bool canSpawnMore => spawnCount < maxSpawnCount;
-    private bool needsMoreSpawned => spawnCount < minSpawnCount;
+    private bool canSpawnMore => spawnCount < spawningConfiguration.MaxSpawnCount;
+    private bool needsMoreSpawned => spawnCount < spawningConfiguration.MinSpawnCount;
 
     private void Awake()
     {
@@ -40,12 +33,12 @@ public class PackageSpawner : MonoBehaviour
 
         packageSpawner.OnDespawn += UpdateSpawnCount;
 
-        spawnTimer = new(spawnDelay.GetRandomInRange(), true, OnSpawnTimer);
+        spawnTimer = new(spawningConfiguration.GetRandomDelay(), true, OnSpawnTimer);
     }
 
     private void Start()
     {
-        for (int i = 0; i < initialSpawnCount; i++)
+        for (int i = 0; i < spawningConfiguration.InitialSpawnCount; i++)
         {
             SpawnPackage();
         }
@@ -79,6 +72,6 @@ public class PackageSpawner : MonoBehaviour
     private void OnSpawnTimer()
     {
         SpawnPackage();
-        spawnTimer.Duration = spawnDelay.GetRandomInRange();
+        spawnTimer.Duration = spawningConfiguration.GetRandomDelay();
     }
 }

@@ -47,11 +47,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PackageSpawner
   packageSpawner: {fileID: 2285925840289774622}
-  spawnDelay:
-    Min: 5
-    Max: 10
-  minSpawnCount: 1
-  initialSpawnCount: 1
+  spawningConfiguration: {fileID: 11400000, guid: bbeba7ea6bd044e45b77b0139677ba3b, type: 2}
+  spawnTimer:
+    <Duration>k__BackingField: 0
+    <IsLooping>k__BackingField: 0
+    <IsRunning>k__BackingField: 0
+    <ElapsedTime>k__BackingField: 0
+  spawnCount: 0
 --- !u!114 &2285925840289774622
 MonoBehaviour:
   m_ObjectHideFlags: 0
