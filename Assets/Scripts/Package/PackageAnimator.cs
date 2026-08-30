@@ -1,9 +1,10 @@
 using Janito.Animations;
 using Janito.EditorExtras;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Animator), typeof(Package))]
 public class PackageAnimator : MonoBehaviour
 {
     [SerializeField]
@@ -13,9 +14,14 @@ public class PackageAnimator : MonoBehaviour
     [SerializeField]
     private AnimatorParameterHasher appearParameter;
     [SerializeField]
+    private AnimatorParameterHasher disappearParameter;
+    [SerializeField]
+    private AnimationClip deliverClip;
+    [SerializeField]
     private ParticleSystem dustCloud;
 
     private Animator animator;
+    private Package package;
 
     private float minSqrSpeedForDust;
     private List<ContactPoint> contactPoints = new();
@@ -23,6 +29,8 @@ public class PackageAnimator : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        package = GetComponent<Package>();
+
         if (rb == null)
         {
             if (!TryGetComponent(out rb))
@@ -49,6 +57,8 @@ public class PackageAnimator : MonoBehaviour
         }
 
         minSqrSpeedForDust = minSpeedForDust * minSpeedForDust;
+
+        package.OnDelivered += PlayDeliverAnimation;
     }
 
     private void OnEnable()
@@ -66,5 +76,17 @@ public class PackageAnimator : MonoBehaviour
                 dustCloud.Play();
             }
         }
+    }
+
+    private void PlayDeliverAnimation(bool isSuccess)
+    {
+        animator.SetTrigger(disappearParameter);
+        StartCoroutine(DespawnAfterAnimation());
+    }
+
+    private IEnumerator DespawnAfterAnimation()
+    {
+        yield return new WaitForSeconds(deliverClip.averageDuration);
+        package.Despawn();
     }
 }

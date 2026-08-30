@@ -82,16 +82,16 @@ public class Package : MonoBehaviour, IInteractable, ISpawnable
 
     public void Deliver(bool wasCorrect)
     {
-        onDelivered?.Invoke(wasCorrect);
         Release();
+        onDelivered?.Invoke(wasCorrect);
         deliveryRegistry.RemoveDeliveryOrder(DeliveryDetails);
+    }
 
-        // Maybe add some logic for correct/incorrect delivery
-
+    public void Despawn()
+    {
         // Clear remaining velocities for clean up
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-
         Despawner.Despawn(gameObject);
     }
 

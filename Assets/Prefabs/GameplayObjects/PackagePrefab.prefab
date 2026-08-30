@@ -5690,6 +5690,8 @@ MonoBehaviour:
   minSpeedForDust: 0.22
   rb: {fileID: 2524214274278844911}
   appearParameter: {fileID: 11400000, guid: 8ecc6a712a9f3f94294fbccf66c8011a, type: 2}
+  disappearParameter: {fileID: 11400000, guid: 0d1993035e253ee43b812ca4f14157b5, type: 2}
+  deliverClip: {fileID: 7400000, guid: daec9382d40cb294ab99733b906b49b5, type: 2}
   dustCloud: {fileID: 8602356346945870413}
 --- !u!95 &4836832960652186031
 Animator:
