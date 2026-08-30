@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5670624656185286972}
   - component: {fileID: 6064268829832828372}
   m_Layer: 5
-  m_Name: Display
+  m_Name: PackageDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 5113208657231129019}
   - component: {fileID: 8175652279690461715}
   m_Layer: 5
-  m_Name: PackageDisplay
+  m_Name: PackageUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
