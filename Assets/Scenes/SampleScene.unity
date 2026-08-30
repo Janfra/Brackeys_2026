@@ -1143,21 +1143,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6944577663673678865, guid: 483cc4bd895faa146b81e8528e2b3848, type: 3}
-      propertyPath: m_ChildControlHeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6944577663673678865, guid: 483cc4bd895faa146b81e8528e2b3848, type: 3}
-      propertyPath: m_ChildForceExpandHeight
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6972943220931435096, guid: 483cc4bd895faa146b81e8528e2b3848, type: 3}
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 7263707704318732346, guid: 483cc4bd895faa146b81e8528e2b3848, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 483cc4bd895faa146b81e8528e2b3848, type: 3}
