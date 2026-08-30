@@ -60,27 +60,11 @@ public class PackageAnimator : MonoBehaviour
     {
         if (rb.linearVelocity.sqrMagnitude > minSqrSpeedForDust)
         {
-            var contactCount = collision.GetContacts(contactPoints);
-            GetMiddlePoint(out Vector3 middlePoint);
-            dustCloud.transform.position = middlePoint;
-            dustCloud.Play();
+            if (collision.TryGetMiddlePoint(contactPoints, out Vector3 middlePoint))
+            {
+                dustCloud.transform.position = middlePoint;
+                dustCloud.Play();
+            }
         }
-    }
-
-    private void GetMiddlePoint(out Vector3 middlePoint)
-    {
-        if (contactPoints.Count == 1)
-        {
-            middlePoint = contactPoints[0].point;
-            return;
-        }
-
-        Vector3 sum = Vector3.zero;
-        foreach (var contact in contactPoints)
-        {
-            sum += contact.point;
-        }
-
-        middlePoint = sum / contactPoints.Count;
     }
 }
