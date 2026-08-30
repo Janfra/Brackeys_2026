@@ -5687,7 +5687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0bf6e374399363439a558087e0385e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PackageAnimator
-  minSpeedForDust: 0.2
+  minSpeedForDust: 0.22
   rb: {fileID: 2524214274278844911}
   appearParameter: {fileID: 11400000, guid: 8ecc6a712a9f3f94294fbccf66c8011a, type: 2}
   dustCloud: {fileID: 8602356346945870413}
