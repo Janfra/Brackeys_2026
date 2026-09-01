@@ -317,8 +317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d31100c0627484f4d913839d8f3bec94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PackageDisplayContainer
-  deliveryRegistry: {fileID: 11400000, guid: 54e38c5126f51044c9e2b18ceaa8acea, type: 2}
   prefab: {fileID: 6633875689012405092, guid: ce1adc04f20c9cb43b075bfb7b67244b, type: 3}
+  deliveryRegistry: {fileID: 11400000, guid: 54e38c5126f51044c9e2b18ceaa8acea, type: 2}
   packagesSpawningInfo: {fileID: 11400000, guid: bbeba7ea6bd044e45b77b0139677ba3b, type: 2}
   bufferSize: 2
 --- !u!114 &6944577663673678865
@@ -339,7 +339,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 1
-  m_Spacing: 20
+  m_Spacing: 5
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
