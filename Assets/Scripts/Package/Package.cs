@@ -1,5 +1,4 @@
 using Janito.EditorExtras;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -67,7 +66,7 @@ public class Package : MonoBehaviour, IInteractable, ISpawnable
         if (DeliveryDetails)
         {
             DeliveryDetails.ExpirationTimer.OnCompleted -= FailDelivery; // Should not need to clean up since dispose clears it
-            deliveryRegistry.RemoveDeliveryOrder(DeliveryDetails);
+            deliveryRegistry.RemoveDeliveryOrder(DeliveryDetails, DeliveryResult.Failure); // Assume it was a failure if it was not delivered before being disabled
             DeliveryDetails = null;
         }
     }
@@ -84,7 +83,7 @@ public class Package : MonoBehaviour, IInteractable, ISpawnable
     {
         Release();
         onDelivered?.Invoke(wasCorrect);
-        deliveryRegistry.RemoveDeliveryOrder(DeliveryDetails);
+        deliveryRegistry.RemoveDeliveryOrder(DeliveryDetails, wasCorrect ? DeliveryResult.Success : DeliveryResult.Failure); // May modify delivery to take in a result instead of bool if more results are needed in the future
     }
 
     public void Despawn()

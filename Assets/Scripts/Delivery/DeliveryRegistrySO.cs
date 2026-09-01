@@ -1,4 +1,3 @@
-using Janito.EditorExtras;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,7 +6,7 @@ using UnityEngine.Events;
 public class DeliveryRegistrySO : ScriptableObject
 {
     public event UnityAction<PackageDetailsSO> OnNewOrderRegistered;
-    public event UnityAction<PackageDetailsSO> OnOrderRemoved;
+    public event UnityAction<PackageDetailsSO, DeliveryResult> OnOrderRemoved;
 
     [SerializeField]
     private RegisteredHousesSO houseRegistry;
@@ -40,11 +39,11 @@ public class DeliveryRegistrySO : ScriptableObject
         return newOrder;
     }
 
-    public void RemoveDeliveryOrder(PackageDetailsSO packageDetails)
+    public void RemoveDeliveryOrder(PackageDetailsSO packageDetails, DeliveryResult result)
     {
         if (deliveryOrders.Remove(packageDetails))
         {
-            OnOrderRemoved?.Invoke(packageDetails);
+            OnOrderRemoved?.Invoke(packageDetails, result);
             packageDetails.Dispose();
             Destroy(packageDetails, destroyDelay); // No pooling, just destroy the object once disposed
         }
