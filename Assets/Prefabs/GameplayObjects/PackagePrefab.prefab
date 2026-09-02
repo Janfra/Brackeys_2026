@@ -5671,10 +5671,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Package
   grabConfiguration: {fileID: 11400000, guid: 1bc272594ee2e9f4cbef12f1b4359691, type: 2}
   deliveryRegistry: {fileID: 11400000, guid: 54e38c5126f51044c9e2b18ceaa8acea, type: 2}
-  onDelivered:
-    m_PersistentCalls:
-      m_Calls: []
-  DeliveryDetails: {fileID: 0}
+  deliverable:
+    onDelivered:
+      m_PersistentCalls:
+        m_Calls: []
+    DeliveryDetails: {fileID: 0}
 --- !u!114 &1272046982202842056
 MonoBehaviour:
   m_ObjectHideFlags: 0

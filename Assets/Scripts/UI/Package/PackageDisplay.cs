@@ -19,9 +19,9 @@ public class PackageDisplay : MonoBehaviour, ISpawnable<PackageDisplay>
     [Header("Debug")]
     [SerializeField]
     [ReadOnly]
-    private PackageDetailsSO packageDetails;
+    private DeliveryDetailsSO packageDetails;
 
-    public PackageDetailsSO PackageDetails => packageDetails;
+    public DeliveryDetailsSO PackageDetails => packageDetails;
 
     public ISpawnableDespawner<PackageDisplay> Despawner { get; set; }
 
@@ -40,7 +40,7 @@ public class PackageDisplay : MonoBehaviour, ISpawnable<PackageDisplay>
         }
     }
 
-    public void AssignPackage(PackageDetailsSO assignedPackageDetails)
+    public void AssignPackage(DeliveryDetailsSO assignedPackageDetails)
     {
         packageDetails = assignedPackageDetails;
     }

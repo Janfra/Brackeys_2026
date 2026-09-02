@@ -4,17 +4,17 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Package : MonoBehaviour, IInteractable, ISpawnable
+public class Package : MonoBehaviour, IInteractable, ISpawnable, IGrabbrableSource
 {
-    public event UnityAction<bool> OnDelivered
+    public event UnityAction<DeliveryResult> OnDelivered
     {
         add
         {
-            onDelivered.AddListener(value);
+            deliverable.OnDelivered += value;
         }
         remove
         {
-            onDelivered.RemoveListener(value);
+            deliverable.OnDelivered -= value;
         }
     }
 
@@ -24,73 +24,56 @@ public class Package : MonoBehaviour, IInteractable, ISpawnable
     private GrabConfigurationSO grabConfiguration;
 
     [SerializeField]
+    [InlineInspector]
     private DeliveryRegistrySO deliveryRegistry;
 
-    [Header("Events")]
     [SerializeField]
-    private UnityEvent<bool> onDelivered;
+    private Deliverable deliverable;
 
-    [Header("Debug")]
-    [ReadOnly]
-    public PackageDetailsSO DeliveryDetails;
-
+    public DeliveryDetailsSO DeliveryDetails => deliverable.DeliveryDetails;
+    public bool IsDeliveryActive => deliverable.IsDeliveryActive;
     public bool IsInteractable => interactor == null;
     public ISpawnableDespawner Despawner { get; set; }
 
-    private Grabbable grabbable = new();
+    private Grabbable grabbable;
     private Interactor interactor;
-    private Rigidbody rb;
+
+    public Rigidbody Rigidbody { get; private set; }
+    public Transform Transform => transform;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
-        grabbable.Rigidbody = rb;
-        grabbable.Transform = transform;
-        grabbable.GrabConfiguration = grabConfiguration;
-
-        if (deliveryRegistry == null)
-        {
-            this.LogErrorInDevelopment($"Delivery registry is null in package. Registry must be provided to generate package details.");
-        }
+        Rigidbody = GetComponent<Rigidbody>();
+        grabbable = new(this, grabConfiguration);
+        deliverable.Initialize(deliveryRegistry);
     }
 
     private void OnEnable()
     {
-        DeliveryDetails = deliveryRegistry.GetNewDeliveryOrder();
-        DeliveryDetails.ExpirationTimer.OnCompleted += FailDelivery;
-        DeliveryDetails.ExpirationTimer.IsRunning = true;
+        deliverable.OnEnable();
     }
 
     private void OnDisable()
     {
-        if (DeliveryDetails)
-        {
-            DeliveryDetails.ExpirationTimer.OnCompleted -= FailDelivery; // Should not need to clean up since dispose clears it
-            deliveryRegistry.RemoveDeliveryOrder(DeliveryDetails, DeliveryResult.Failure); // Assume it was a failure if it was not delivered before being disabled
-            DeliveryDetails = null;
-        }
+        deliverable.OnDisable();
     }
 
     private void Update()
     {
-        if (DeliveryDetails)
-        {
-            DeliveryDetails.ExpirationTimer.Update(Time.deltaTime);
-        }
+        deliverable.Update(Time.deltaTime);
     }
 
-    public void Deliver(bool wasCorrect)
+    public void Deliver(DeliveryResult result)
     {
         Release();
-        onDelivered?.Invoke(wasCorrect);
-        deliveryRegistry.RemoveDeliveryOrder(DeliveryDetails, wasCorrect ? DeliveryResult.Success : DeliveryResult.Failure); // May modify delivery to take in a result instead of bool if more results are needed in the future
+        deliverable.Deliver(result);
     }
 
     public void Despawn()
     {
         // Clear remaining velocities for clean up
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
+        Rigidbody.linearVelocity = Vector3.zero;
+        Rigidbody.angularVelocity = Vector3.zero;
         Despawner.Despawn(gameObject);
     }
 
@@ -121,11 +104,6 @@ public class Package : MonoBehaviour, IInteractable, ISpawnable
         }
 
         grabbable.Release();
-    }
-
-    private void FailDelivery()
-    {
-        Deliver(false);
     }
 
     private void TrySetInteractorPackageOverride(InteractPayload payload)

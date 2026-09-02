@@ -3,10 +3,10 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "Delivery Registry", menuName = "Scriptable Objects/Delivery/Delivery Registry")]
-public class DeliveryRegistrySO : ScriptableObject
+public class DeliveryRegistrySO : ScriptableObject, IDeliveryManager
 {
-    public event UnityAction<PackageDetailsSO> OnNewOrderRegistered;
-    public event UnityAction<PackageDetailsSO, DeliveryResult> OnOrderRemoved;
+    public event UnityAction<DeliveryDetailsSO> OnNewOrderRegistered;
+    public event UnityAction<DeliveryDetailsSO, DeliveryResult> OnOrderRemoved;
 
     [SerializeField]
     private RegisteredHousesSO houseRegistry;
@@ -17,8 +17,8 @@ public class DeliveryRegistrySO : ScriptableObject
 
     private const float destroyDelay = 1.0f;
 
-    private List<PackageDetailsSO> deliveryOrders;
-    public IReadOnlyList<PackageDetailsSO> DeliveryOrders => deliveryOrders;
+    private List<DeliveryDetailsSO> deliveryOrders;
+    public IReadOnlyList<DeliveryDetailsSO> DeliveryOrders => deliveryOrders;
 
     private void OnEnable()
     {
@@ -30,16 +30,16 @@ public class DeliveryRegistrySO : ScriptableObject
         deliveryOrders = new();
     }
 
-    public PackageDetailsSO GetNewDeliveryOrder()
+    public DeliveryDetailsSO GetNewDeliveryOrder()
     {
-        var newOrder = CreateInstance<PackageDetailsSO>();
+        var newOrder = CreateInstance<DeliveryDetailsSO>();
         AssignOrderInformation(newOrder);
         deliveryOrders.Add(newOrder);
         OnNewOrderRegistered?.Invoke(newOrder);
         return newOrder;
     }
 
-    public void RemoveDeliveryOrder(PackageDetailsSO packageDetails, DeliveryResult result)
+    public void RemoveDeliveryOrder(DeliveryDetailsSO packageDetails, DeliveryResult result)
     {
         if (deliveryOrders.Remove(packageDetails))
         {
@@ -49,7 +49,7 @@ public class DeliveryRegistrySO : ScriptableObject
         }
     }
 
-    private void AssignOrderInformation(PackageDetailsSO newOrder)
+    private void AssignOrderInformation(DeliveryDetailsSO newOrder)
     {
         int count = houseRegistry.RegisteredHouses.Count;
         HouseSO house = null;

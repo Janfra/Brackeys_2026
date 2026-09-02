@@ -78,8 +78,9 @@ public class PackageAnimator : MonoBehaviour
         }
     }
 
-    private void PlayDeliverAnimation(bool isSuccess)
+    private void PlayDeliverAnimation(DeliveryResult result)
     {
+        rb.isKinematic = true;
         animator.SetTrigger(disappearParameter);
         StartCoroutine(DespawnAfterAnimation());
     }
@@ -87,6 +88,7 @@ public class PackageAnimator : MonoBehaviour
     private IEnumerator DespawnAfterAnimation()
     {
         yield return new WaitForSeconds(deliverClip.averageDuration);
+        rb.isKinematic = false;
         package.Despawn();
     }
 }

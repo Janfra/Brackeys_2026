@@ -62,6 +62,11 @@ public class House : MonoBehaviour
 
     public void ProcessDeliveredPackage(Package package)
     {
+        if (!package.IsDeliveryActive)
+        {
+            return;
+        }
+
         if (package.DeliveryDetails == null)
         {
             LogLibrary.LogErrorInDevelopment<Package>($"Package delivery details are null.", package);
@@ -69,10 +74,10 @@ public class House : MonoBehaviour
         }
 
         bool isCorrect = IsForThisAddress(package.DeliveryDetails);
-        package.Deliver(isCorrect);
+        package.Deliver(isCorrect ? DeliveryResult.Success : DeliveryResult.Failure);
     }
 
-    private bool IsForThisAddress(PackageDetailsSO packageDetails)
+    private bool IsForThisAddress(DeliveryDetailsSO packageDetails)
     {
         return packageDetails.DeliveryHouse == houseIdentifier;
     }

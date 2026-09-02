@@ -2,19 +2,39 @@ using Janito.EditorExtras;
 using System;
 using UnityEngine;
 
+public interface IGrabbrableSource
+{
+    public Transform Transform { get; }
+    public Rigidbody Rigidbody { get; }
+}
+
 [Serializable]
 public class Grabbable
 {
-    public Transform Transform; 
-    public Rigidbody Rigidbody;
-
     [CreateButton(savePath: PathUtils.ProjectConfigurationPath + "/Grab")]
     [InlineInspector]
     public GrabConfigurationSO GrabConfiguration;
 
-    public Transform Holder { get; private set; }
+    private IGrabbrableSource source;
 
-    public bool IsValid => Transform != null && Rigidbody != null;
+    public Transform Holder { get; private set; }
+    public bool IsValid => source != null && source.Transform != null && source.Rigidbody != null;
+
+    public Grabbable(IGrabbrableSource source)
+    {
+        Initialize(source);
+    }
+
+    public Grabbable(IGrabbrableSource source, GrabConfigurationSO grabConfiguration)
+    {
+        Initialize(source);
+        GrabConfiguration = grabConfiguration;
+    }
+
+    public void Initialize(IGrabbrableSource source)
+    {
+        this.source = source;
+    }
 
     public void Grab(Transform newHolder)
     {
@@ -30,13 +50,13 @@ public class Grabbable
 
         Holder = newHolder;
         MoveOnTopOfObject(Holder);
-        Transform.SetParent(Holder); // Match holder position
+        source.Transform.SetParent(Holder); // Match holder position
         DisablePhysics();
     }
 
     public void Release()
     {
-        Transform.SetParent(null);
+        source.Transform.SetParent(null);
         EnablePhysics();
         Holder = null;
     }
@@ -57,7 +77,7 @@ public class Grabbable
         Release();
         Vector3 relativeVelocity = GetAdditionalVelocityFromHolder(oldHolder);
         Vector3 throwDirection = oldHolder.transform.forward * force.ForwardStrength + oldHolder.transform.up * force.UpwardStrength;
-        Rigidbody.AddForce(throwDirection + relativeVelocity, ForceMode.Impulse);
+        source.Rigidbody.AddForce(throwDirection + relativeVelocity, ForceMode.Impulse);
     }
 
     private void MoveOnTopOfObject(Transform target)
@@ -75,21 +95,21 @@ public class Grabbable
             position.y += GrabConfiguration.HeightOffset; // Do height offset again as a fallback for now to try to put it on top
         }
 
-        Transform.position = position;
-        Transform.rotation = target.rotation;
+        source.Transform.position = position;
+        source.Transform.rotation = target.rotation;
     }
 
     private void DisablePhysics()
     {
         // Clear any remaining velocities
-        Rigidbody.angularVelocity = Vector3.zero;
-        Rigidbody.linearVelocity = Vector3.zero;
-        Rigidbody.isKinematic = true;
+        source.Rigidbody.angularVelocity = Vector3.zero;
+        source.Rigidbody.linearVelocity = Vector3.zero;
+        source.Rigidbody.isKinematic = true;
     }
 
     private void EnablePhysics()
     {
-        Rigidbody.isKinematic = false;
+        source.Rigidbody.isKinematic = false;
     }
 
     private Vector3 GetAdditionalVelocityFromHolder(Transform holder)

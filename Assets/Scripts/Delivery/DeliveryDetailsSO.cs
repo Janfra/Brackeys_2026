@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PackageDetailsSO : ScriptableObject, IDisposable
+public class DeliveryDetailsSO : ScriptableObject, IDisposable
 {
     public HouseSO DeliveryHouse;
     public Timer ExpirationTimer;

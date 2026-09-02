@@ -14,7 +14,7 @@ public class PackageDisplayContainer : MonoBehaviour, ISpawnableDespawner<Packag
     private int bufferSize = 2;
 
     private Queue<PackageDisplay> availablePackages = new();
-    private Dictionary<PackageDetailsSO, PackageDisplay> packageDetailsDisplayMap = new();
+    private Dictionary<DeliveryDetailsSO, PackageDisplay> packageDetailsDisplayMap = new();
 
     private void Awake()
     {
@@ -42,7 +42,7 @@ public class PackageDisplayContainer : MonoBehaviour, ISpawnableDespawner<Packag
         FreePackageDisplay(package);
     }
 
-    private void DisplayPackageInformation(PackageDetailsSO packageDetails)
+    private void DisplayPackageInformation(DeliveryDetailsSO packageDetails)
     {
         if (packageDetails == null) return;
 
@@ -54,7 +54,7 @@ public class PackageDisplayContainer : MonoBehaviour, ISpawnableDespawner<Packag
         }
     }
 
-    private void FreeAssignedPackageDisplay(PackageDetailsSO packageDetails, DeliveryResult result)
+    private void FreeAssignedPackageDisplay(DeliveryDetailsSO packageDetails, DeliveryResult result)
     {
         if (packageDetails == null) return;
 

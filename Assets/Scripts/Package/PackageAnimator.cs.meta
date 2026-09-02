@@ -1,2 +1,16 @@
 fileFormatVersion: 2
 guid: b0bf6e374399363439a558087e0385e4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - rb: {instanceID: 0}
+  - appearParameter: {instanceID: 0}
+  - disappearParameter: {instanceID: 0}
+  - deliverClip: {instanceID: 0}
+  - dustCloud: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
