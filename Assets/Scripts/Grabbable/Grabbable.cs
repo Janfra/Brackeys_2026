@@ -1,16 +1,24 @@
 using Janito.EditorExtras;
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public interface IGrabbrableSource
 {
     public Transform Transform { get; }
     public Rigidbody Rigidbody { get; }
+
+    /// <summary>
+    /// The root of the grabbed object, which is the object provided when tracking grabbed objects.
+    /// </summary>
+    public GameObject GrabObject { get; }
 }
 
 [Serializable]
-public class Grabbable
+public class Grabbable : IGrabReleaseNotifier
 {
+    public event UnityAction OnReleased;
+
     [CreateButton(savePath: PathUtils.ProjectConfigurationPath + "/Grab")]
     [InlineInspector]
     public GrabConfigurationSO GrabConfiguration;
@@ -52,6 +60,7 @@ public class Grabbable
         MoveOnTopOfObject(Holder);
         source.Transform.SetParent(Holder); // Match holder position
         DisablePhysics();
+        TryNotifyGrabTracker(Holder);
     }
 
     public void Release()
@@ -59,6 +68,7 @@ public class Grabbable
         source.Transform.SetParent(null);
         EnablePhysics();
         Holder = null;
+        OnReleased?.Invoke();
     }
 
     public void Throw()
@@ -78,6 +88,11 @@ public class Grabbable
         Vector3 relativeVelocity = GetAdditionalVelocityFromHolder(oldHolder);
         Vector3 throwDirection = oldHolder.transform.forward * force.ForwardStrength + oldHolder.transform.up * force.UpwardStrength;
         source.Rigidbody.AddForce(throwDirection + relativeVelocity, ForceMode.Impulse);
+    }
+
+    public void ClearListeners()
+    {
+        OnReleased = null;
     }
 
     private void MoveOnTopOfObject(Transform target)
@@ -110,6 +125,15 @@ public class Grabbable
     private void EnablePhysics()
     {
         source.Rigidbody.isKinematic = false;
+    }
+
+    private void TryNotifyGrabTracker(Transform holder)
+    {
+        if (holder.TryGetComponent(out IGrabTracker grabTracker))
+        {
+            GrabInformation grabData = new GrabInformation(source.GrabObject, holder, this);
+            grabTracker.NotifyNewGrabbed(grabData);
+        }
     }
 
     private Vector3 GetAdditionalVelocityFromHolder(Transform holder)

@@ -40,6 +40,7 @@ public class Package : MonoBehaviour, IInteractable, ISpawnable, IGrabbrableSour
 
     public Rigidbody Rigidbody { get; private set; }
     public Transform Transform => transform;
+    public GameObject GrabObject => gameObject;
 
     private void Awake()
     {

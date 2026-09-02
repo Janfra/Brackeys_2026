@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3646068809263788637}
+  - component: {fileID: 797782724600015192}
   - component: {fileID: 1500034095953028362}
   - component: {fileID: 7593272940396912809}
   - component: {fileID: 997224911633587397}
   - component: {fileID: 7446447499730491431}
   - component: {fileID: 8625514282625343629}
-  - component: {fileID: 797782724600015192}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -39,6 +39,48 @@ Transform:
   - {fileID: 2441887831203263644}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &797782724600015192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75006269800279548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e863182f0ed0d304eb90c50664ddf055, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  playerGrabTracker: {fileID: 11400000, guid: a0718c0973c796146a46329a1ff601e9, type: 2}
+  runAnimator:
+    <Animator>k__BackingField: {fileID: 8575831018865815270}
+    SpeedParameter: {fileID: 11400000, guid: 902aa8b9aeba43d41a06b0a821465798, type: 2}
+    MoveMultiplierParameter: {fileID: 11400000, guid: a116518cf409bc9418b80ab42ab711e5, type: 2}
+    moveMultiplierCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.4
+        inSlope: 0.25081426
+        outSlope: 0.25081426
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.031737193
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    minVelocity: 0.7
 --- !u!114 &1500034095953028362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,7 +268,7 @@ MonoBehaviour:
     Transform: {fileID: 0}
     speed: 0
     desiredVelocity: {x: 0, y: 0, z: 0}
-    validInputHorizontalDirection: {x: 0, y: 0}
+    lastValidInput: {x: 0, y: 0}
 --- !u!54 &7446447499730491431
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -277,47 +319,6 @@ CapsuleCollider:
   m_Height: 3.3
   m_Direction: 1
   m_Center: {x: 0, y: 0.6, z: 0}
---- !u!114 &797782724600015192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 75006269800279548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e863182f0ed0d304eb90c50664ddf055, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  runAnimator:
-    <Animator>k__BackingField: {fileID: 8575831018865815270}
-    VelocityParameter: {fileID: 11400000, guid: 902aa8b9aeba43d41a06b0a821465798, type: 2}
-    MoveMultiplierParameter: {fileID: 11400000, guid: a116518cf409bc9418b80ab42ab711e5, type: 2}
-    moveMultiplierCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.4
-        inSlope: 0.25081426
-        outSlope: 0.25081426
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.031737193
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 2
-        outSlope: 2
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    minVelocity: 0.7
 --- !u!1 &5784007590036349198
 GameObject:
   m_ObjectHideFlags: 0

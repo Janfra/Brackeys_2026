@@ -1,9 +1,15 @@
+using Janito.EditorExtras;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Interactor), typeof(PlayerMovement))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IGrabTracker
 {
+    [SerializeField]
+    [CreateButton("{name} Grab Tracker", savePath: PathUtils.ProjectScriptableObjectsPath)]
+    [InlineInspector]
+    private GrabTrackerSO playerGrabTracker;
+
     [SerializeField]
     private MovementAnimator runAnimator;
 
@@ -28,5 +34,10 @@ public class PlayerController : MonoBehaviour
         {
             interactor.TryInteract();
         }
+    }
+
+    public void NotifyNewGrabbed(GrabInformation grabData)
+    {
+        playerGrabTracker.NotifyNewGrabbed(grabData);
     }
 }
