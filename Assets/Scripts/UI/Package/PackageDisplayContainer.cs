@@ -1,27 +1,20 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PackageDisplayContainer : MonoBehaviour, ISpawnableDespawner<PackageDisplay>
 {
     [SerializeField]
-    private PackageDisplay prefab;
-    [SerializeField]
     private DeliveryRegistrySO deliveryRegistry;
     [SerializeField]
     private SpawningConfigurationSO packagesSpawningInfo;
     [SerializeField]
-    private int bufferSize = 2;
+    private PackageDisplayPooler packageDisplayPooler;
 
-    private Queue<PackageDisplay> availablePackages = new();
     private Dictionary<DeliveryDetailsSO, PackageDisplay> packageDetailsDisplayMap = new();
 
     private void Awake()
     {
-        for (int i = 0; i < packagesSpawningInfo.MaxSpawnCount + bufferSize; i++)
-        {
-            CreatePackageDisplay();
-        }
+        packageDisplayPooler.Initialize(this, packagesSpawningInfo.MaxSpawnCount);
     }
 
     private void OnEnable()
@@ -39,14 +32,14 @@ public class PackageDisplayContainer : MonoBehaviour, ISpawnableDespawner<Packag
     public void Despawn(PackageDisplay package)
     {
         if (package == null) return;
-        FreePackageDisplay(package);
+        packageDisplayPooler.FreePackageDisplay(package);
     }
 
     private void DisplayPackageInformation(DeliveryDetailsSO packageDetails)
     {
         if (packageDetails == null) return;
 
-        var display = ReservePackageDisplay();
+        var display = packageDisplayPooler.ReservePackageDisplay();
         display.AssignPackage(packageDetails);
         if (packageDetailsDisplayMap.TryAdd(packageDetails, display))
         {
@@ -72,26 +65,5 @@ public class PackageDisplayContainer : MonoBehaviour, ISpawnableDespawner<Packag
     {
         if (package == null) return;
         package.OnPackageDelivered(result == DeliveryResult.Success);
-    }
-
-    private PackageDisplay ReservePackageDisplay()
-    {
-        var package = availablePackages.Dequeue();
-        package.gameObject.SetActive(true);
-        return package;
-    }
-
-    private void FreePackageDisplay(PackageDisplay package)
-    {
-        package.gameObject.SetActive(false);
-        availablePackages.Enqueue(package);
-    }
-
-    private void CreatePackageDisplay()
-    {
-        var instance = Instantiate(prefab, transform);
-        instance.Despawner = this;
-        instance.gameObject.SetActive(false);
-        availablePackages.Enqueue(instance);
     }
 }
