@@ -57,13 +57,17 @@ public class PackageAnimator : MonoBehaviour
         }
 
         minSqrSpeedForDust = minSpeedForDust * minSpeedForDust;
-
-        package.OnDelivered += PlayDeliverAnimation;
     }
 
     private void OnEnable()
     {
+        package.OnDelivered += PlayDeliverAnimation;
         animator.SetTrigger(appearParameter);
+    }
+
+    private void OnDisable()
+    {
+        package.OnDelivered -= PlayDeliverAnimation;
     }
 
     private void OnCollisionEnter(Collision collision)
