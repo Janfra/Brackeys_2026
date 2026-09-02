@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     public IReadOnlyMovement ReadOnlyMovement => steerMovement;
     public Vector2 Input => input;
+    public Vector2 LastValidInput => steerMovement.LastValidInput;
 
     private void Awake()
     {

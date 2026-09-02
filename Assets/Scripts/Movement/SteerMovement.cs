@@ -17,7 +17,7 @@ public class SteerMovement : IReadOnlyMovement
     private Vector3 desiredVelocity;
     [ReadOnly]
     [SerializeField]
-    private Vector2 validInputHorizontalDirection;
+    private Vector2 lastValidInput;
     
     private MovementConfigurationSO configuration;
     private float throttle;
@@ -26,6 +26,7 @@ public class SteerMovement : IReadOnlyMovement
     public float Speed => speed;
     public float MaxSpeed => configuration ? configuration.MaxSpeed : 0.0f;
     public Vector3 Velocity => Rigidbody.linearVelocity;
+    public Vector2 LastValidInput => lastValidInput;
 
     public void SetConfiguration(MovementConfigurationSO config)
     {
@@ -47,13 +48,13 @@ public class SteerMovement : IReadOnlyMovement
         throttle = input.x;
         if (throttle != 0)
         {
-            validInputHorizontalDirection.x = throttle;
+            lastValidInput.x = throttle;
         }
 
         steer = input.y;
         if (steer != 0)
         {
-            validInputHorizontalDirection.y = steer;
+            lastValidInput.y = steer;
         }
     }
 
@@ -78,7 +79,7 @@ public class SteerMovement : IReadOnlyMovement
         }
         else
         {
-            desiredVelocity = Transform.forward * validInputHorizontalDirection.x * speed;
+            desiredVelocity = Transform.forward * lastValidInput.x * speed;
         }
 
         var appliedVelocity = desiredVelocity - Rigidbody.linearVelocity;

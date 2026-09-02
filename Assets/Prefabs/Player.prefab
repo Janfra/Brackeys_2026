@@ -289,16 +289,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e863182f0ed0d304eb90c50664ddf055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  animator: {fileID: 8575831018865815270}
-  velocityParameter: {fileID: 11400000, guid: 902aa8b9aeba43d41a06b0a821465798, type: 2}
-  runMultiplierParameter: {fileID: 11400000, guid: a116518cf409bc9418b80ab42ab711e5, type: 2}
-  runMultiplierCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  minVelocity: 0.7
+  runAnimator:
+    <Animator>k__BackingField: {fileID: 8575831018865815270}
+    VelocityParameter: {fileID: 11400000, guid: 902aa8b9aeba43d41a06b0a821465798, type: 2}
+    MoveMultiplierParameter: {fileID: 11400000, guid: a116518cf409bc9418b80ab42ab711e5, type: 2}
+    moveMultiplierCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.4
+        inSlope: 0.25081426
+        outSlope: 0.25081426
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.031737193
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    minVelocity: 0.7
 --- !u!1 &5784007590036349198
 GameObject:
   m_ObjectHideFlags: 0
