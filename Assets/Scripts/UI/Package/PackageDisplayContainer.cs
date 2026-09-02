@@ -8,13 +8,13 @@ public class PackageDisplayContainer : MonoBehaviour, ISpawnableDespawner<Packag
     [SerializeField]
     private SpawningConfigurationSO packagesSpawningInfo;
     [SerializeField]
-    private PackageDisplayPooler packageDisplayPooler;
+    private ComponentPooler<PackageDisplay> packageDisplayPooler;
 
     private Dictionary<DeliveryDetailsSO, PackageDisplay> packageDetailsDisplayMap = new();
 
     private void Awake()
     {
-        packageDisplayPooler.Initialize(this, packagesSpawningInfo.MaxSpawnCount);
+        packageDisplayPooler.Initialize(packagesSpawningInfo.MaxSpawnCount, this);
     }
 
     private void OnEnable()
@@ -32,14 +32,14 @@ public class PackageDisplayContainer : MonoBehaviour, ISpawnableDespawner<Packag
     public void Despawn(PackageDisplay package)
     {
         if (package == null) return;
-        packageDisplayPooler.FreePackageDisplay(package);
+        packageDisplayPooler.ReleaseComponent(package);
     }
 
     private void DisplayPackageInformation(DeliveryDetailsSO packageDetails)
     {
         if (packageDetails == null) return;
 
-        var display = packageDisplayPooler.ReservePackageDisplay();
+        var display = packageDisplayPooler.GetComponent();
         display.AssignPackage(packageDetails);
         if (packageDetailsDisplayMap.TryAdd(packageDetails, display))
         {

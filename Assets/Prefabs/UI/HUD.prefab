@@ -323,6 +323,8 @@ MonoBehaviour:
     prefab: {fileID: 6633875689012405092, guid: ce1adc04f20c9cb43b075bfb7b67244b, type: 3}
     parentTransform: {fileID: 8220377942460431569}
     bufferSize: 2
+    maxSize: 10
+    hasCollectionCheck: 1
 --- !u!114 &6944577663673678865
 MonoBehaviour:
   m_ObjectHideFlags: 0
