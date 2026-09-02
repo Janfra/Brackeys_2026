@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Package : MonoBehaviour, IInteractable, ISpawnable, IGrabbrableSource
+public class Package : MonoBehaviour, IInteractable, ISpawnable, IGrabbrableSource, IDeliveryDetailsHolder
 {
     public event UnityAction<DeliveryResult> OnDelivered
     {

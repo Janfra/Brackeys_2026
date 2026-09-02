@@ -325,6 +325,7 @@ MonoBehaviour:
     bufferSize: 2
     maxSize: 10
     hasCollectionCheck: 1
+  playerGrabTracker: {fileID: 11400000, guid: a0718c0973c796146a46329a1ff601e9, type: 2}
 --- !u!114 &6944577663673678865
 MonoBehaviour:
   m_ObjectHideFlags: 0

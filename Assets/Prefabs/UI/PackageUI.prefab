@@ -298,6 +298,7 @@ MonoBehaviour:
   appearParameter: {fileID: 11400000, guid: 8ecc6a712a9f3f94294fbccf66c8011a, type: 2}
   despawnParameter: {fileID: 11400000, guid: 0d1993035e253ee43b812ca4f14157b5, type: 2}
   isSuccessParameter: {fileID: 11400000, guid: e1377e5d09c9dfb4aba4646e87a1af45, type: 2}
+  isHighlight: {fileID: 11400000, guid: 168df117ac0dd1e459354cb99bff423d, type: 2}
   packageDetails: {fileID: 0}
 --- !u!95 &3726298288785956522
 Animator:
