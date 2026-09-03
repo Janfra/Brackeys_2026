@@ -1075,6 +1075,26 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4550842974575666162, guid: 483cc4bd895faa146b81e8528e2b3848, type: 3}
+      propertyPath: m_AspectRatio
+      value: 1.061366
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748065679740276190, guid: 483cc4bd895faa146b81e8528e2b3848, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748065679740276190, guid: 483cc4bd895faa146b81e8528e2b3848, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.b
+      value: 0.9433962
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748065679740276190, guid: 483cc4bd895faa146b81e8528e2b3848, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.g
+      value: 0.9433962
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748065679740276190, guid: 483cc4bd895faa146b81e8528e2b3848, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.r
+      value: 0.9433962
+      objectReference: {fileID: 0}
     - target: {fileID: 5793356722954969189, guid: 483cc4bd895faa146b81e8528e2b3848, type: 3}
       propertyPath: m_Pivot.x
       value: 0
