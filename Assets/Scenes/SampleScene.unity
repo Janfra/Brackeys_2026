@@ -296,7 +296,7 @@ GameObject:
   m_Component:
   - component: {fileID: 669382473}
   m_Layer: 0
-  m_Name: === UI ===
+  m_Name: === HUD ===
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1079,13 +1079,21 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 808791720725308010, guid: 483cc4bd895faa146b81e8528e2b3848, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1188436930292263505, guid: 483cc4bd895faa146b81e8528e2b3848, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -1.5178549
       objectReference: {fileID: 0}
     - target: {fileID: 4550842974575666162, guid: 483cc4bd895faa146b81e8528e2b3848, type: 3}
       propertyPath: m_AspectRatio
       value: 1.061366
+      objectReference: {fileID: 0}
+    - target: {fileID: 4723279989887881385, guid: 483cc4bd895faa146b81e8528e2b3848, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5748065679740276190, guid: 483cc4bd895faa146b81e8528e2b3848, type: 3}
       propertyPath: m_Colors.m_DisabledColor.a
@@ -1189,7 +1197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7238945351567559676, guid: 483cc4bd895faa146b81e8528e2b3848, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -1.2980123
       objectReference: {fileID: 0}
     - target: {fileID: 8439533643454059985, guid: 483cc4bd895faa146b81e8528e2b3848, type: 3}
       propertyPath: m_SizeDelta.y
