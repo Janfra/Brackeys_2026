@@ -66,7 +66,7 @@ public class DeliveryRegistrySO : ScriptableObject, IDeliveryManager
         newOrder.ExpirationTimer = new(expirationTime);
         if (houseRegistry.TryGetHouseDetails(house, out var details))
         {
-            newOrder.Description += details.GetDescription() + "\n";
+            newOrder.AddDescriptionLine(details.GetDescription());
         }
     }
 }

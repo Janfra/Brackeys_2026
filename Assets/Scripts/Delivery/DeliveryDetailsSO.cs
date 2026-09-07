@@ -9,6 +9,11 @@ public class DeliveryDetailsSO : ScriptableObject, IDisposable
 
     public IReadOnlyTimer ReadOnlyExpirationTimer => ExpirationTimer;
 
+    public void AddDescriptionLine(string description)
+    {
+        Description += description + "\n";
+    }
+
     public void Dispose()
     {
         ExpirationTimer.Dispose();
