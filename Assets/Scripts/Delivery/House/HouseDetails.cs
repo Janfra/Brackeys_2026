@@ -21,18 +21,37 @@ public class HouseDetails : IHouseDetails
 
     public void SetDescriptionConfiguration(DescriptionsConfigurationSO descriptionsConfiguration)
     {
+        if (unusedDescriptions == null)
+        {
+            unusedDescriptions = new Queue<string>();
+        }
+
         this.descriptionsConfiguration = descriptionsConfiguration;
         SetDescriptionQueueToConfig();
     }
 
     public string GetDescription()
     {
+        if (unusedDescriptions.Count == 0)
+        {
+            SetDescriptionQueueToConfig();
+        }
+
         return unusedDescriptions.Count > 0 ? unusedDescriptions.Dequeue() : string.Empty;
     }
 
     private void SetDescriptionQueueToConfig()
     {
-        unusedDescriptions.Clear();
+        if (descriptionsConfiguration == null)
+        {
+            return;
+        }
+
+        if (unusedDescriptions.Count > 0)
+        {
+            unusedDescriptions.Clear();
+        }
+
         foreach (var description in descriptionsConfiguration.Descriptions)
         {
             unusedDescriptions.Enqueue(description);
