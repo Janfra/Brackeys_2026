@@ -1,15 +1,41 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public struct HouseDetails
+public class HouseDetails : IHouseDetails
 {
-    public Vector3 DeliveryPoint;
-    public string DisplayName;
+    [field: SerializeField]
+    public Vector3 DeliveryPoint { get; set; }
 
-    public HouseDetails(Vector3 deliveryPoint, string displayName)
+    private DescriptionsConfigurationSO descriptionsConfiguration;
+    private Queue<string> unusedDescriptions = new();
+
+    public string DisplayName => descriptionsConfiguration.DisplayName;
+
+    public HouseDetails(Vector3 deliveryPoint, DescriptionsConfigurationSO descriptionsConfiguration)
     {
         DeliveryPoint = deliveryPoint;
-        DisplayName = displayName;
+        SetDescriptionConfiguration(descriptionsConfiguration);
+    }
+
+    public void SetDescriptionConfiguration(DescriptionsConfigurationSO descriptionsConfiguration)
+    {
+        this.descriptionsConfiguration = descriptionsConfiguration;
+        SetDescriptionQueueToConfig();
+    }
+
+    public string GetDescription()
+    {
+        return unusedDescriptions.Count > 0 ? unusedDescriptions.Dequeue() : string.Empty;
+    }
+
+    private void SetDescriptionQueueToConfig()
+    {
+        unusedDescriptions.Clear();
+        foreach (var description in descriptionsConfiguration.Descriptions)
+        {
+            unusedDescriptions.Enqueue(description);
+        }
     }
 }

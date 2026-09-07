@@ -6,7 +6,7 @@ using UnityEngine;
 public class RegisteredHousesSO : ScriptableObject
 {
     private List<HouseSO> registeredHouses;
-    private Dictionary<HouseSO, HouseDetails> houseDetailsMap;
+    private Dictionary<HouseSO, IHouseDetails> houseDetailsMap;
 
     public IReadOnlyList<HouseSO> RegisteredHouses => registeredHouses;
 
@@ -22,12 +22,12 @@ public class RegisteredHousesSO : ScriptableObject
         houseDetailsMap = new();
     }
 
-    public bool TryGetHouseDetails(HouseSO house, out HouseDetails details)
+    public bool TryGetHouseDetails(HouseSO house, out IHouseDetails details)
     {
         return houseDetailsMap.TryGetValue(house, out details);
     }
 
-    public void RegisterHouse(HouseSO house, HouseDetails details)
+    public void RegisterHouse(HouseSO house, IHouseDetails details)
     {
         if (registeredHouses.Contains(house))
         {
@@ -44,7 +44,7 @@ public class RegisteredHousesSO : ScriptableObject
         registeredHouses.Remove(house);
     }
 
-    public HouseSO CreateAndRegisterHouse(HouseDetails details)
+    public HouseSO CreateAndRegisterHouse(IHouseDetails details)
     {
         var newHouse = CreateInstance<HouseSO>();
         newHouse.name = $"House #{registeredHouses.Count + 1}";
@@ -53,13 +53,8 @@ public class RegisteredHousesSO : ScriptableObject
         return newHouse;
     }
 
-    private void RegisterHouseDetails(HouseSO house, HouseDetails details)
+    private void RegisterHouseDetails(HouseSO house, IHouseDetails details)
     {
-        if (string.IsNullOrEmpty(details.DisplayName))
-        {
-            details.DisplayName = house.name;
-        }
-
         if (houseDetailsMap.ContainsKey(house))
         {
             houseDetailsMap[house] = details;
