@@ -64,5 +64,9 @@ public class DeliveryRegistrySO : ScriptableObject, IDeliveryManager
         newOrder.DeliveryHouse = house;
         newOrder.name = $"Delivery Order For {targetName}";
         newOrder.ExpirationTimer = new(expirationTime);
+        if (houseRegistry.TryGetHouseDetails(house, out var details))
+        {
+            newOrder.Description += details.GetDescription() + "\n";
+        }
     }
 }

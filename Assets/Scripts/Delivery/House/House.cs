@@ -10,10 +10,18 @@ public class House : MonoBehaviour
     [SerializeField]
     private Transform deliveryPoint;
 
+    [SerializeField]
+    [CreateButton(namingFormat: "{name} Descriptions Configuration", savePath: PathUtils.ProjectConfigurationPath + "/Descriptions")]
+    [InlineInspector]
+    private DescriptionsConfigurationSO descriptionConfiguration;
+
     [Header("Debug")]
     [ReadOnly]
     [SerializeField]
     private HouseSO houseIdentifier;
+    [ReadOnly]
+    [SerializeField]
+    private HouseDetails houseDetails;
 
     private void Awake()
     {
@@ -29,12 +37,16 @@ public class House : MonoBehaviour
             return;
         }
 
-        houseIdentifier = houseRegistry.CreateAndRegisterHouse(new(deliveryPoint.position, null));
+        houseDetails.DeliveryPoint = deliveryPoint.position;
+        houseDetails.SetDescriptionConfiguration(descriptionConfiguration);
 
         // Make the house static just in case
-        var rb = GetComponent<Rigidbody>();
-        rb.isKinematic = true;
-        rb.constraints = RigidbodyConstraints.FreezeAll;
+        SetAsStatic();
+    }
+
+    private void OnEnable()
+    {
+        houseIdentifier = houseRegistry.CreateAndRegisterHouse(houseDetails);
     }
 
     private void OnDisable()
@@ -80,5 +92,12 @@ public class House : MonoBehaviour
     private bool IsForThisAddress(DeliveryDetailsSO packageDetails)
     {
         return packageDetails.DeliveryHouse == houseIdentifier;
+    }
+
+    private void SetAsStatic()
+    {
+        var rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;
+        rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 }
