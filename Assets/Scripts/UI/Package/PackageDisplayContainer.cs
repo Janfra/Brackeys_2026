@@ -1,5 +1,4 @@
 using Janito.EditorExtras;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -82,7 +81,7 @@ public class PackageDisplayContainer : MonoBehaviour, ISpawnableDespawner<Packag
             if (display != null)
             {
                 NotifyPackageDisplayOfDelivery(display, result);  
-                packageDetailsDisplayMap[packageDetails] = null;
+                packageDetailsDisplayMap.Remove(packageDetails);
             }
         }
     }
