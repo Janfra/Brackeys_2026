@@ -34,15 +34,36 @@ public class Prompt : MonoBehaviour, IPrompter
             return;
         }
 
+        // For now assume that prompts should never be interactable
+        canvasGroup.blocksRaycasts = false;
+        canvasGroup.interactable = false;
+    }
+
+    private void OnEnable()
+    {
+        if (!promptSource)
+        {
+            return;
+        }
+
         if (promptSource.Prompter != null)
         {
             this.LogWarningInDevelopment($"Old prompter will be replaced with this instance ({name}) inside {promptSource.name}");
         }
         promptSource.SetPrompter(this);
+    }
 
-        // For now assume that prompts should never be interactable
-        canvasGroup.blocksRaycasts = false;
-        canvasGroup.interactable = false;
+    private void OnDisable()
+    {
+        if (!promptSource)
+        {
+            return;
+        }
+
+        if (this as IPrompter == promptSource.Prompter)
+        {
+            promptSource.SetPrompter(null);
+        }
     }
 
     private void LateUpdate()
