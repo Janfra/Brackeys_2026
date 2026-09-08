@@ -247,9 +247,10 @@ MonoBehaviour:
   interactLayerMask:
     serializedVersion: 2
     m_Bits: 1
+  canInteractOnAwake: 1
   interactPayload:
     Source: {fileID: 0}
-  CanInteract: 1
+  <CanInteract>k__BackingField: 1
 --- !u!114 &997224911633587397
 MonoBehaviour:
   m_ObjectHideFlags: 0
