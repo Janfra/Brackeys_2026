@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour, IGrabTracker
     private MovementAnimator runAnimator;
 
     [SerializeField]
-    private PromptSO interactPrompt;
+    private InteractionPrompter interactionPrompter;
 
     private IInteractor interactor;
     private PlayerMovement movement;
@@ -24,35 +24,13 @@ public class PlayerController : MonoBehaviour, IGrabTracker
         interactor = GetComponent<IInteractor>();
         movement = GetComponent<PlayerMovement>();
         runAnimator.Initialize(movement.ReadOnlyMovement);
+        interactionPrompter.Interactor = interactor;
     }
 
     private void LateUpdate()
     {
         runAnimator.UpdateMoveAnimation(isPlayedBackwards: movement.LastValidInput.x < 0);
-
-        if (interactPrompt && interactPrompt.TryGetPrompter(out IPrompter prompter))
-        {
-            bool canInteract = interactor.InteractBlocker != null ? interactor.InteractBlocker.WillAllowInteraction() : true;
-            if (interactor.TryGetTarget(out IInteractable target) && canInteract)
-            {
-                if (target is IPromptTarget promptTarget)
-                {
-                    prompter.SetPrompt(promptTarget.GetPromptSettings());
-                }
-                else if (target is Component targetComponent && targetComponent.TryGetComponent(out promptTarget)) 
-                {
-                    prompter.SetPrompt(promptTarget.GetPromptSettings());
-                }
-                else
-                {
-                    prompter.HidePrompt();
-                }
-            }
-            else
-            {
-                prompter.HidePrompt();
-            }
-        } 
+        interactionPrompter.UpdatePrompt();
     }
 
     public void OnInteract(InputAction.CallbackContext context)

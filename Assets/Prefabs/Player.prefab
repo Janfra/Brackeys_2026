@@ -81,12 +81,8 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     minVelocity: 0.7
-  interactPrompt: {fileID: 11400000, guid: 570ab461de99de149a97b3b42c9598b7, type: 2}
-  promptSettings:
-    Prompt: 
-    Input: 
-    Position: {x: 0, y: 0, z: 0}
-    PositionOffset: {x: 0, y: 0, z: 0}
+  interactionPrompter:
+    Prompt: {fileID: 11400000, guid: 570ab461de99de149a97b3b42c9598b7, type: 2}
 --- !u!114 &1500034095953028362
 MonoBehaviour:
   m_ObjectHideFlags: 0

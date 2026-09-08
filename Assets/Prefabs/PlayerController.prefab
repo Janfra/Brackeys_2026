@@ -171,6 +171,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 797782724600015192, guid: b29c1969a87adb940b7991842b4accd4, type: 3}
+      propertyPath: interactionPrompter.Prompt
+      value: 
+      objectReference: {fileID: 11400000, guid: 570ab461de99de149a97b3b42c9598b7, type: 2}
+    - target: {fileID: 797782724600015192, guid: b29c1969a87adb940b7991842b4accd4, type: 3}
       propertyPath: runMultiplierCurve.m_Curve.Array.size
       value: 2
       objectReference: {fileID: 0}
