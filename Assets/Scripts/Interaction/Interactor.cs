@@ -1,11 +1,10 @@
 using Janito.EditorExtras;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Interactor : MonoBehaviour
+public class Interactor : MonoBehaviour, IInteractor
 {
     public event UnityAction<IInteractable> OnInteracted;
 
@@ -16,22 +15,55 @@ public class Interactor : MonoBehaviour
     private LayerMask interactLayerMask;
 
     [SerializeField]
+    private bool canInteractOnAwake;
+    
+    [SerializeField]
     [ReadOnly]
     private InteractPayload interactPayload;
 
-    [ReadOnly]
-    public bool CanInteract;
+    [field: ReadOnly]
+    [field: SerializeField]
+    public bool CanInteract { get; set; } = true;
 
-    /// <summary>
-    /// To be able to assign custom logic before on interact default logic. Returned boolean determines if we should continue logic.
-    /// </summary>
-    public Func<List<IInteractable>, bool> OnShouldInteract;
-
+    public IInteractSelector InteractSelector { get; set; }
+    public IInteractBlocker InteractBlocker { get; private set; }
+    
     private List<IInteractable> interactSweep = new();
+    private IInteractable selectedInteractable => interactSweep[0];
 
     private void Awake()
     {
         interactPayload.Source = gameObject;
+        CanInteract = canInteractOnAwake;
+    }
+
+    public bool TryGetTarget(out IInteractable interactable)
+    {
+        UpdateInteractList();
+
+        interactable = null;
+        if (interactSweep.Count > 0)
+        {
+            interactable = selectedInteractable;
+        }
+
+        return interactable != null;
+    }
+
+    public void UpdateInteractList()
+    {
+        interactSweep.Clear();
+        var nearbyItems = Physics.OverlapSphere(transform.position, interactRadius, interactLayerMask.value);
+        var orderedByDistance = nearbyItems.OrderBy(GetColliderDistance);
+        foreach (var item in orderedByDistance)
+        {
+            if (item.TryGetComponent(out IInteractable interactable) && interactable.IsInteractable)
+            {
+                interactSweep.Add(interactable);
+            }
+        }
+
+        InteractSelector?.SetSelectedInteract(interactSweep);
     }
 
     [Button(ButtonExecutionModes.PlayMode)]
@@ -42,28 +74,38 @@ public class Interactor : MonoBehaviour
             return;
         }
 
-        interactSweep.Clear();
-        var nearbyItems = Physics.OverlapSphere(transform.position, interactRadius, interactLayerMask.value);
-        var orderedByDistance = nearbyItems.OrderBy(x => (transform.position - x.transform.position).sqrMagnitude);
-        foreach (var item in orderedByDistance)
+        UpdateInteractList();
+        
+        if (InteractBlocker != null)
         {
-            if (item.TryGetComponent(out IInteractable interactable) && interactable.IsInteractable)
-            {
-                interactSweep.Add(interactable);
-            }
-        }
-
-        if (OnShouldInteract != null)
-        {
-            if (!OnShouldInteract.Invoke(interactSweep))
+            if (!InteractBlocker.CanContinueInteraction())
             {
                 return;
             }
         }
 
-        if (interactSweep.Count > 0)
+        if (TryGetTarget(out IInteractable interactable))
         {
-            InteractWith(interactSweep[0]);
+            InteractWith(interactable);
+        }
+    }
+
+    public void SetBlocker(IInteractBlocker interactBlocker)
+    {
+        if (InteractBlocker == interactBlocker)
+        {
+            return;
+        }
+
+        if (InteractBlocker != null)
+        {
+            InteractBlocker.OnRemoved();
+        }
+
+        InteractBlocker = interactBlocker;
+        if (InteractBlocker != null)
+        {
+            InteractBlocker.OnAssigned(this);
         }
     }
 
@@ -71,6 +113,11 @@ public class Interactor : MonoBehaviour
     {
         interactable.Interact(interactPayload);
         OnInteracted?.Invoke(interactable);
+    }
+
+    private float GetColliderDistance(Collider collider)
+    {
+        return (transform.position - collider.transform.position).sqrMagnitude;
     }
 
     private void OnDrawGizmosSelected()

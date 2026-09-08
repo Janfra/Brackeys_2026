@@ -1,5 +1,5 @@
 using Janito.EditorExtras;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -35,8 +35,10 @@ public class Package : MonoBehaviour, IInteractable, ISpawnable, IGrabbrableSour
     public bool IsInteractable => interactor == null;
     public ISpawnableDespawner Despawner { get; set; }
 
+    private PackageInteractableSelector packageInteractableSelector = new();
+    private OnlyAllowInteractOfType<IPackageInteractable> packageInteractionOnlyBlocker = new();
     private Grabbable grabbable;
-    private Interactor interactor;
+    private IInteractor interactor;
 
     public Rigidbody Rigidbody { get; private set; }
     public Transform Transform => transform;
@@ -52,11 +54,14 @@ public class Package : MonoBehaviour, IInteractable, ISpawnable, IGrabbrableSour
     private void OnEnable()
     {
         deliverable.OnEnable();
+        packageInteractionOnlyBlocker.OnDeterminedOutcome = HandleInteractOutcome;
     }
 
     private void OnDisable()
     {
         deliverable.OnDisable();
+        packageInteractionOnlyBlocker.OnDeterminedOutcome = null;
+        ClearInteractor();
     }
 
     private void Update()
@@ -83,7 +88,7 @@ public class Package : MonoBehaviour, IInteractable, ISpawnable, IGrabbrableSour
         if (payload == null || payload.Source == null || !IsInteractable) return;
 
         grabbable.Grab(payload.Source.transform);
-        TrySetInteractorPackageOverride(payload);
+        UpdateInteractConfiguration(payload);
     }
 
     public void Grab(Transform newHolder)
@@ -93,59 +98,40 @@ public class Package : MonoBehaviour, IInteractable, ISpawnable, IGrabbrableSour
 
     public void Throw()
     {
+        ClearInteractor();
         grabbable.Throw();
     }
 
     public void Release()
     {
-        if (interactor != null)
-        {
-            interactor.OnShouldInteract = null;
-            interactor = null;            
-        }
-
+        ClearInteractor();
         grabbable.Release();
     }
 
-    private void TrySetInteractorPackageOverride(InteractPayload payload)
+    private void UpdateInteractConfiguration(InteractPayload payload)
     {
         if (payload.Source.TryGetComponent(out interactor))
         {
-            interactor.OnShouldInteract = HandleInteraction;
+            interactor.InteractSelector = packageInteractableSelector;
+            interactor.SetBlocker(packageInteractionOnlyBlocker);
         }
     }
 
-    private bool HandleInteraction(List<IInteractable> interactablesInRange)
+    private void HandleInteractOutcome(bool hasValidInteraction)
     {
-        interactor.OnShouldInteract = null;
-        bool hasValidInteractable = HasPackageCompatibleInteractable(interactablesInRange); // Assigns it to be interacted with if found
-
-        if (!hasValidInteractable)
+        if (!hasValidInteraction)
         {
-            grabbable.Throw();
+            Throw();
         }
-
-        interactor = null;
-        return hasValidInteractable;
     }
 
-    private bool HasPackageCompatibleInteractable(List<IInteractable> interactablesInRange)
+    private void ClearInteractor()
     {
-        for (int i = 0; i < interactablesInRange.Count; i++)
+        if (interactor != null)
         {
-            var interactable = interactablesInRange[i];
-            if (interactable is IPackageInteractable)
-            {
-                if (i == 0) return true;
-
-                // Swap it to first position and let it be interacted with
-                var temp = interactablesInRange[0];
-                interactablesInRange[i] = temp;
-                interactablesInRange[0] = interactable;
-                return true;
-            }
-        } 
-
-        return false;
+            interactor.InteractSelector = null;
+            interactor.SetBlocker(null);
+            interactor = null;
+        }
     }
 }
