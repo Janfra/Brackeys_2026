@@ -1,24 +1,18 @@
+using System;
 using UnityEngine;
 
+[Serializable]
 public struct PromptSettings
 {
-    /// <summary>
-    /// Prompt to display.
-    /// </summary>
+    [Tooltip("Prompt to display.")]
     public string Prompt;
 
-    /// <summary>
-    /// Input to display on prompt.
-    /// </summary>
+    [Tooltip("Input to display on prompt.")]
     public string Input;
-   
-    /// <summary>
-    /// Sets the position of the prompt. Overriden if following transform position.
-    /// </summary>
+
+    [Tooltip("Sets the position of the prompt. Overriden if following transform position.")]
     public Vector3 Position;
 
-    /// <summary>
-    /// Sets the offset to apply to the position. Useful for adjusting location when following a transform position.
-    /// </summary>
+    [Tooltip("Sets the offset to apply to the position. Useful for adjusting location when following a transform position.")]
     public Vector3 PositionOffset;
 }

@@ -93,8 +93,9 @@ public class Prompt : MonoBehaviour, IPrompter
         }
 
         prompt.text = promptSettings.Prompt;
-        prompt.text = promptSettings.Input;
+        input.text = promptSettings.Input;
         positionOffset = promptSettings.PositionOffset;
+        transform.position = promptSettings.Position + promptSettings.PositionOffset;
         canvasGroup.alpha = 1.0f;
     }
 

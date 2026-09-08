@@ -1005,8 +1005,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 652341416}
     m_Modifications:
-    - target: {fileID: 4151409836392894360, guid: 62b5989a6c4bfe84eaf1d1337592cbd3, type: 3}
-      propertyPath: canInteractOnAwake
+    - target: {fileID: 6624293584936453737, guid: 62b5989a6c4bfe84eaf1d1337592cbd3, type: 3}
+      propertyPath: promptSettings.Input
+      value: E
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624293584936453737, guid: 62b5989a6c4bfe84eaf1d1337592cbd3, type: 3}
+      propertyPath: promptSettings.Prompt
+      value: Interact
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624293584936453737, guid: 62b5989a6c4bfe84eaf1d1337592cbd3, type: 3}
+      propertyPath: promptSettings.PositionOffset.y
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8371113923454584448, guid: 62b5989a6c4bfe84eaf1d1337592cbd3, type: 3}
