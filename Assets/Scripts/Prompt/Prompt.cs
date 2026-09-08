@@ -16,6 +16,8 @@ public class Prompt : MonoBehaviour, IPrompter
     private PromptSO promptSource;
 
     private CanvasGroup canvasGroup;
+    private Transform followTarget;
+    private Vector3 positionOffset;
 
     private void Awake()
     {
@@ -43,14 +45,23 @@ public class Prompt : MonoBehaviour, IPrompter
         canvasGroup.interactable = false;
     }
 
+    private void LateUpdate()
+    {
+        if (followTarget)
+        {
+            transform.position = followTarget.position + positionOffset;
+        }
+    }
+
     public void HidePrompt()
     {
         canvasGroup.alpha = 0.0f;
+        followTarget = null;
     }
 
     public PromptSettings GetPrompt()
     {
-        return new PromptSettings { Input = input.text, Prompt = prompt.text };
+        return new PromptSettings { Input = input.text, Prompt = prompt.text, Position = transform.position, PositionOffset = positionOffset };
     }
 
     public void SetPrompt(PromptSettings promptSettings)
@@ -62,6 +73,13 @@ public class Prompt : MonoBehaviour, IPrompter
 
         prompt.text = promptSettings.Prompt;
         prompt.text = promptSettings.Input;
+        positionOffset = promptSettings.PositionOffset;
         canvasGroup.alpha = 1.0f;
+    }
+
+    public void SetFollowingPrompt(PromptSettings promptSettings, Transform transform)
+    {
+        SetPrompt(promptSettings);
+        followTarget = transform;
     }
 }
