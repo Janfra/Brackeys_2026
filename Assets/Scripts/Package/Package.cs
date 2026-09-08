@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Package : MonoBehaviour, IInteractable, ISpawnable, IGrabbrableSource, IDeliveryDetailsHolder
+public class Package : MonoBehaviour, IInteractable, ISpawnable, IGrabbrableSource, IDeliveryDetailsHolder, IPromptTarget
 {
     public event UnityAction<DeliveryResult> OnDelivered
     {
@@ -29,6 +29,9 @@ public class Package : MonoBehaviour, IInteractable, ISpawnable, IGrabbrableSour
 
     [SerializeField]
     private Deliverable deliverable;
+
+    [SerializeField]
+    private PromptSettings packagePrompt;
 
     public DeliveryDetailsSO DeliveryDetails => deliverable.DeliveryDetails;
     public bool IsDeliveryActive => deliverable.IsDeliveryActive;
@@ -67,6 +70,12 @@ public class Package : MonoBehaviour, IInteractable, ISpawnable, IGrabbrableSour
     private void Update()
     {
         deliverable.Update(Time.deltaTime);
+    }
+
+    public PromptSettings GetPromptSettings()
+    {
+        packagePrompt.Position = transform.position;
+        return packagePrompt;
     }
 
     public void Deliver(DeliveryResult result)

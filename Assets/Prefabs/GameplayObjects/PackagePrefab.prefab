@@ -5676,6 +5676,11 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     DeliveryDetails: {fileID: 0}
+  packagePrompt:
+    Prompt: Grab
+    Input: E
+    Position: {x: 0, y: 0, z: 0}
+    PositionOffset: {x: 0, y: 1, z: 0}
 --- !u!114 &1272046982202842056
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16,9 +16,6 @@ public class PlayerController : MonoBehaviour, IGrabTracker
     [SerializeField]
     private PromptSO interactPrompt;
 
-    [SerializeField]
-    private PromptSettings promptSettings;
-
     private IInteractor interactor;
     private PlayerMovement movement;
 
@@ -38,16 +35,18 @@ public class PlayerController : MonoBehaviour, IGrabTracker
             bool canInteract = interactor.InteractBlocker != null ? interactor.InteractBlocker.WillAllowInteraction() : true;
             if (interactor.TryGetTarget(out IInteractable target) && canInteract)
             {
-                if (target is Component component)
+                if (target is IPromptTarget promptTarget)
                 {
-                    promptSettings.Position = component.gameObject.transform.position;
+                    prompter.SetPrompt(promptTarget.GetPromptSettings());
+                }
+                else if (target is Component targetComponent && targetComponent.TryGetComponent(out promptTarget)) 
+                {
+                    prompter.SetPrompt(promptTarget.GetPromptSettings());
                 }
                 else
                 {
-                    promptSettings.Position = transform.position;
+                    prompter.HidePrompt();
                 }
-
-                prompter.SetPrompt(promptSettings);
             }
             else
             {
